@@ -1,0 +1,121 @@
+<% let action = "";
+   let address = "";
+   let price = "";
+   let description = "";
+   let propertyType = "";
+   let bedrooms = "";
+   let bathrooms = "";
+   let squareFootage = "";
+   let lotSize = "";
+   let yearBuilt = "";
+   let images = [];
+   let status = "";
+   let tags = [];
+   let openHouseDates = [];
+   let method = "post";
+
+   if (typeof resource !== "undefined") {
+    action = `/${resource.id}`;
+    address = resource.address;
+    price = resource.price;
+    description = resource.description;
+    propertyType = resource.propertyType;
+    bedrooms = resource.bedrooms;
+    bathrooms = resource.bathrooms;
+    squareFootage = resource.squareFootage;
+    lotSize = resource.lotSize;
+    yearBuilt = resource.yearBuilt;
+    images = resource.images;
+    status = resource.status;
+    tags = resource.tags;
+    openHouseDates = resource.openHouseDates;
+    method = "put";
+}
+%>
+
+<form action="/resources<%= action %>" method="post" class="mt-3">
+    <input type="hidden" name="_method" value="<%= method %>">
+
+    <div class="mb-3">
+        <label for="address" class="form-label">Address:</label>
+        <input type="text" class="form-control" id="address" name="address" required value="<%= address %>">
+    </div>
+
+
+    <div class="mb-3">
+        <label for="price" class="form-label">Price:</label>
+        <input type="number" class="form-control" id="price" name="price" required value="<%= price %>">
+    </div>
+
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea class="form-control" id="description" name="description" required><%= description %></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="propertyType" class="form-label">Property Type:</label>
+        <select id="propertyType" name="propertyType" class="form-select" required>
+            <option value="House" <%= propertyType === "House" ? "selected" : "" %>>House</option>
+            <option value="Apartment" <%= propertyType === "Apartment" ? "selected" : "" %>>Apartment</option>
+            <option value="Condominium" <%= propertyType === "Condominium" ? "selected" : "" %>>Condominium</option>
+            <option value="Land" <%= propertyType === "Land" ? "selected" : "" %>>Land</option>
+            <option value="Commercial" <%= propertyType === "Commercial" ? "selected" : "" %>>Commercial</option>
+            <option value="Other" <%= propertyType === "Other" ? "selected" : "" %>>Other</option>
+        </select>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="bedrooms" class="form-label">Bedrooms:</label>
+        <input type="number" class="form-control" id="bedrooms" name="bedrooms" value="<%= bedrooms %>">
+    </div>
+
+    <div class="mb-3">
+        <label for="bathrooms" class="form-label">Bathrooms:</label>
+        <input type="number" class="form-control" id="bathrooms" name="bathrooms" value="<%= bathrooms %>">
+    </div>
+
+    <div class="mb-3">
+        <label for="squareFootage" class="form-label">Square Footage:</label>
+        <input type="number" class="form-control" id="squareFootage" name="squareFootage" value="<%= squareFootage %>">
+    </div>
+
+    <div class="mb-3">
+        <label for="lotSize" class="form-label">Lot Size:</label>
+        <input type="number" class="form-control" id="lotSize" name="lotSize" value="<%= lotSize %>">
+    </div>
+
+    <div class="mb-3">
+        <label for="yearBuilt" class="form-label">Year Built:</label>
+        <input type="number" class="form-control" id="yearBuilt" name="yearBuilt" value="<%= yearBuilt %>">
+    </div>
+
+    <div class="mb-3">
+        <label for="images" class="form-label">Images:</label>
+        <input type="file" class="form-control" id="images" name="images" multiple>
+    </div>
+
+    <div class="mb-3">
+        <label for="status" class="form-label">Status:</label>
+        <select id="status" name="status" class="form-select">
+            <option value="Active" <%= status === "Active" ? "selected" : "" %>>Active</option>
+            <option value="Pending" <%= status === "Pending" ? "selected" : "" %>>Pending</option>
+            <option value="Sold" <%= status === "Sold" ? "selected" : "" %>>Sold</option>
+            <option value="Expired" <%= status === "Expired" ? "selected" : "" %>>Expired</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="tags" class="form-label">Tags:</label>
+        <input type="text" class="form-control" id="tags" name="tags" value="<%= tags.join(', ') %>">
+    </div>
+
+    <div class="mb-3">
+        <label for="openHouseDates" class="form-label">Open House Dates:</label>
+        <input type="text" class="form-control" id="openHouseDates" name="openHouseDates" value="<%= openHouseDates.join(', ') %>">
+    </div>
+    <!-- Include other fields as necessary -->
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
