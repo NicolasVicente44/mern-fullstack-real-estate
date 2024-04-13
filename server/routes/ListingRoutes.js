@@ -7,7 +7,7 @@ import {
     create,
     update,
     remove
-} from "../controllers/ResourcesController.js";
+} from "../controllers/ListingsController.js";
 import { isAuthenticated } from "../controllers/AuthenticationController.js";
 import cors from "cors";
 

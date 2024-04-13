@@ -16,13 +16,18 @@
                 <th>Nickname</th>
                 <th>Avatar</th>
                 <th>Last Updated</th>
+                <!-- Add columns for agent profile -->
+                <th>Agency Name</th>
+                <th>License Number</th>
+                <th>Phone Number</th>
+                <th>Bio</th>
                 <th>Actions</th>
             </tr>
         </thead>
 
         <tbody>
             <% if (users && users.length > 0) { %>
-                <% users.forEach(({ id, firstName, lastName, email, nickname, avatar, updatedAt }) => { %>
+                <% users.forEach(({ id, firstName, lastName, email, nickname, avatar, updatedAt, agentProfile }) => { %>
                     <tr>
                         <td><%= firstName %></td>
                         <td><%= lastName %></td>
@@ -32,6 +37,19 @@
                             <img class="img-thumbnail" style="max-width: 100px; max-height: 100px;" src="<%= avatar %>">
                         </td>
                         <td><%= updatedAt %></td>
+                        <!-- Display agent profile fields if available -->
+                        <% if (agentProfile) { %>
+                            <td><%= agentProfile.agencyName || "" %></td>
+                            <td><%= agentProfile.licenseNumber || "" %></td>
+                            <td><%= agentProfile.phoneNumber || "" %></td>
+                            <td><%= agentProfile.bio || "" %></td>
+                        <% } else { %>
+                            <!-- If user is not an agent, leave these columns empty -->
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        <% } %>
                         <td>
                             <a href="/users/<%= id %>">view</a> | 
                             <a href="/users/<%= id %>/edit">edit</a> | 

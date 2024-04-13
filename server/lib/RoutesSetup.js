@@ -1,5 +1,5 @@
 import PageRoutes from "../routes/PageRoutes.js";
-import ResourceRoutes from "../routes/ResourceRoutes.js";
+import ListingRoutes from "../routes/ListingRoutes.js";
 import UserRoutes from "../routes/UserRoutes.js";
 import AuthenticationRoutes from "../routes/AuthenticationRoutes.js";
 import ApplicationRoutes from "../routes/ApplicationRoutes.js";
@@ -13,7 +13,7 @@ export default (app) => {
     app.use("/", AuthenticationRoutes);
     
     // Our Resource routes
-    app.use("/resources", ResourceRoutes);
+    app.use("/listings", ListingRoutes);
 
     // Our User routes
     app.use("/users", UserRoutes);

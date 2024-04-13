@@ -5,11 +5,11 @@
 
   <hr class="my-5" />
 
-  <a href="/resources/<%= listing.id %>/edit">Edit listing</a>
+  <a href="/listings/<%= listing.id %>/edit">Edit listing</a>
 
   <div>
-    <div class="resource-body">
-      <p class="resource-text">
+    <div class="listing-body">
+      <p class="listing-text">
         <strong>Address:</strong> <%= listing.address %><br />
         <strong>Price:</strong> <%= listing.price %><br />
         <strong>Description:</strong> <%= listing.description %><br />
@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <a href="/resources">Back to List</a>
+  <a href="/listings">Back to List</a>
 </div>
 
 <%- include("../shared/_footer") %>

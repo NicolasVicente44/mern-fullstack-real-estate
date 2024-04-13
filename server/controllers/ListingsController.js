@@ -8,7 +8,7 @@ export const index = async (req, res, next) => {
 
     res.format({
       "text/html": () => {
-        res.render("resources/index", { listings, title: "Listings" });
+        res.render("listings/index", { listings, title: "Listings" });
       },
       "application/json": () => {
         res.json({ listings });
@@ -28,7 +28,7 @@ export const show = async (req, res, next) => {
 
     res.format({
       "text/html": () => {
-        res.render("resources/show", { listing, title: "Listing Details" });
+        res.render("listings/show", { listing, title: "Listing Details" });
       },
       "application/json": () => {
         res.json({ listing });
@@ -44,7 +44,7 @@ export const show = async (req, res, next) => {
 
 export const add = async (req, res, next) => {
   try {
-    res.render("resources/add", {
+    res.render("listings/add", {
       listingTypes,
       formType: "create",
       title: "New Listing",
@@ -67,7 +67,7 @@ export const edit = async (req, res, next) => {
       throw new Error("Listing does not exist");
     }
 
-    res.render("resources/edit", {
+    res.render("listings/edit", {
       listing,
       listingTypes,
       formType: "update",
@@ -130,7 +130,7 @@ export const create = async (req, res, next) => {
             message: "Listing was created successfully",
           },
         ];
-        res.redirect("/resources");
+        res.redirect("/listings");
       },
       "application/json": () => {
         res.status(201).json({ status: 201, message: "SUCCESS" });
@@ -168,12 +168,12 @@ export const update = async (req, res, next) => {
     } = req.body;
 
     const listing = await Listing.findById(req.params.id);
-    // If the resource doesn't exist, return a 404 response
+    // If the listing doesn't exist, return a 404 response
     if (!listing) {
       return res.status(404).json({ message: "Listing not found" });
     }
 
-    // Update all fields of the resource with the new values from the request body
+    // Update all fields of the listing with the new values from the request body
     listing.address = address;
     listing.price = price;
     listing.description = description;
@@ -200,7 +200,7 @@ export const update = async (req, res, next) => {
             message: "Listing was updated successfully",
           },
         ];
-        res.redirect("/resources");
+        res.redirect("/listings");
       },
       "application/json": () => {
         res.status(200).json({ status: 200, message: "SUCCESS" });
@@ -236,7 +236,7 @@ export const remove = async (req, res, next) => {
             message: "Listing was deleted successfully",
           },
         ];
-        res.redirect("/resources");
+        res.redirect("/listings");
       },
       "application/json": () => {
         res.status(200).json({ status: 200, message: "SUCCESS" });

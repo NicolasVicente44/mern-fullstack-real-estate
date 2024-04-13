@@ -5,7 +5,7 @@
 
   <hr class="my-5" />
 
-  <a href="/resources/new">Create a new resource</a>
+  <a href="/listings/new">Create a new listing</a>
 
   <table class="table table-striped table-bordered">
     <thead>
@@ -42,12 +42,12 @@
         <td><%= status %></td>
         <td><%= tags.join(', ') %></td>
         <td>
-          <a href="/resources/<%= id %>">view</a> |
-          <a href="/resources/<%= id %>/edit">edit</a> |
+          <a href="/listings/<%= id %>">view</a> |
+          <a href="/listings/<%= id %>/edit">edit</a> |
           <form
-            action="/resources/<%= id %>"
+            action="/listings/<%= id %>"
             method="post"
-            onsubmit="return confirm('Are you sure you want to delete this resource?')"
+            onsubmit="return confirm('Are you sure you want to delete this listing?')"
           >
             <input type="hidden" name="_method" value="delete" />
             <button class="standard-link" type="submit">delete</button>

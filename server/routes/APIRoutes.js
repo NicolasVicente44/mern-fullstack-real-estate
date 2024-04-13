@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { 
-    index as resourceIndex, 
-    show as resourceShow,
-    create as resourceCreate,
-    update as resourceUpdate,
-    remove as resourceDelete,
-} from "../controllers/ResourcesController.js";
+    index as listingIndex, 
+    show as listingShow,
+    create as listingCreate,
+    update as listingUpdate,
+    remove as listingDelete,
+} from "../controllers/ListingsController.js";
 import { show as userShow, create as userCreate, update as userUpdate } from "../controllers/UsersController.js";
 import { isAuthenticated, authenticate as userAuthenticate, logout as userLogout } from "../controllers/AuthenticationController.js";
 import { requestToken, authenticate as applicationAuthenticate } from "../controllers/ApplicationController.js";
@@ -26,11 +26,11 @@ router.use((req, res, next) => {
 });
 router.post("/authenticate", requestToken);
 
-router.get("/resources", applicationAuthenticate, isAuthenticated, resourceIndex);
-router.get("/resources/:id", applicationAuthenticate, isAuthenticated, resourceShow);
-router.post("/resources", applicationAuthenticate, isAuthenticated, resourceCreate);
-router.put("/resources/:id", applicationAuthenticate, isAuthenticated, resourceUpdate);
-router.delete("/resources/:id", applicationAuthenticate, isAuthenticated, resourceDelete);
+router.get("/listings", applicationAuthenticate, isAuthenticated, listingIndex);
+router.get("/listings/:id", applicationAuthenticate, isAuthenticated, listingShow);
+router.post("/listings", applicationAuthenticate, isAuthenticated, listingCreate);
+router.put("/listings/:id", applicationAuthenticate, isAuthenticated, listingUpdate);
+router.delete("/listings/:id", applicationAuthenticate, isAuthenticated, listingDelete);
 
 router.get("/users/:id", applicationAuthenticate, isAuthenticated, userShow);
 router.post("/users", applicationAuthenticate, upload.single("avatar"), userCreate);
