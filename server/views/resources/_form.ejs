@@ -14,21 +14,21 @@
    let openHouseDates = [];
    let method = "post";
 
-   if (typeof resource !== "undefined") {
-    action = `/${resource.id}`;
-    address = resource.address;
-    price = resource.price;
-    description = resource.description;
-    propertyType = resource.propertyType;
-    bedrooms = resource.bedrooms;
-    bathrooms = resource.bathrooms;
-    squareFootage = resource.squareFootage;
-    lotSize = resource.lotSize;
-    yearBuilt = resource.yearBuilt;
-    images = resource.images;
-    status = resource.status;
-    tags = resource.tags;
-    openHouseDates = resource.openHouseDates;
+   if (typeof listing !== "undefined") {
+    action = `/${listing.id}`;
+    address = listing.address;
+    price = listing.price;
+    description = listing.description;
+    propertyType = listing.propertyType;
+    bedrooms = listing.bedrooms;
+    bathrooms = listing.bathrooms;
+    squareFootage = listing.squareFootage;
+    lotSize = listing.lotSize;
+    yearBuilt = listing.yearBuilt;
+    images = listing.images;
+    status = listing.status;
+    tags = listing.tags;
+    openHouseDates = listing.openHouseDates;
     method = "put";
 }
 %>

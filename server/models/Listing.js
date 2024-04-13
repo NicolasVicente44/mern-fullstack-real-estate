@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const ResourceSchema = new Schema(
+const ListingSchema = new Schema(
   {
     address: {
       type: String,
@@ -47,10 +47,10 @@ const ResourceSchema = new Schema(
     author: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      required: [true, "Resource must have an author"],
+      required: [true, "Listing must have an author"],
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Resource", ResourceSchema);
+export default mongoose.model("Listing", ListingSchema);

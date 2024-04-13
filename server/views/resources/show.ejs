@@ -1,32 +1,32 @@
 <%- include("../shared/_header") %>
 
 <div class="container mt-5">
-  <h1>resource Details</h1>
+  <h1>Listing Details</h1>
 
   <hr class="my-5" />
 
-  <a href="/resources/<%= resource.id %>/edit">Edit resource</a>
+  <a href="/resources/<%= listing.id %>/edit">Edit listing</a>
 
   <div>
     <div class="resource-body">
       <p class="resource-text">
-        <strong>Address:</strong> <%= resource.address %><br />
-        <strong>Price:</strong> <%= resource.price %><br />
-        <strong>Description:</strong> <%= resource.description %><br />
-        <strong>Property Type:</strong> <%= resource.propertyType %><br />
-        <strong>Bedrooms:</strong> <%= resource.bedrooms %><br />
-        <strong>Bathrooms:</strong> <%= resource.bathrooms %><br />
-        <strong>Square Footage:</strong> <%= resource.squareFootage %><br />
-        <strong>Lot Size:</strong> <%= resource.lotSize %><br />
-        <strong>Year Built:</strong> <%= resource.yearBuilt %><br />
-        <strong>Status:</strong> <%= resource.status %><br />
-        <strong>Tags:</strong> <%= resource.tags.join(', ') %><br />
+        <strong>Address:</strong> <%= listing.address %><br />
+        <strong>Price:</strong> <%= listing.price %><br />
+        <strong>Description:</strong> <%= listing.description %><br />
+        <strong>Property Type:</strong> <%= listing.propertyType %><br />
+        <strong>Bedrooms:</strong> <%= listing.bedrooms %><br />
+        <strong>Bathrooms:</strong> <%= listing.bathrooms %><br />
+        <strong>Square Footage:</strong> <%= listing.squareFootage %><br />
+        <strong>Lot Size:</strong> <%= listing.lotSize %><br />
+        <strong>Year Built:</strong> <%= listing.yearBuilt %><br />
+        <strong>Status:</strong> <%= listing.status %><br />
+        <strong>Tags:</strong> <%= listing.tags.join(', ') %><br />
         <strong>Open House Dates:</strong>
-        <% if (typeof resource.openHouseDates === 'string') { %> <% const
-        datesArray = resource.openHouseDates.split(','); %> <%
+        <% if (typeof listing.openHouseDates === 'string') { %> <% const
+        datesArray = listing.openHouseDates.split(','); %> <%
         datesArray.forEach(date => { %> <%= date %><br />
-        <% }); %> <% } else if (Array.isArray(resource.openHouseDates)) { %> <%
-        resource.openHouseDates.forEach(date => { %> <%= date %><br />
+        <% }); %> <% } else if (Array.isArray(listing.openHouseDates)) { %> <%
+        listing.openHouseDates.forEach(date => { %> <%= date %><br />
         <% }); %> <% } %>
 
         <br />

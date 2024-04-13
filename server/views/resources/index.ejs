@@ -1,7 +1,7 @@
 <%- include("../shared/_header") %>
 
 <div class="container mt-5">
-  <h1>Resources List</h1>
+  <h1>Listings</h1>
 
   <hr class="my-5" />
 
@@ -26,7 +26,7 @@
     </thead>
 
     <tbody>
-      <% if (resources && resources.length > 0) { %> <% resources.forEach(({ id,
+      <% if (listings && listings.length > 0) { %> <% listings.forEach(({ id,
       address, price, description, propertyType, bedrooms, bathrooms,
       squareFootage, lotSize, yearBuilt, status, tags }) => { %>
       <tr>
