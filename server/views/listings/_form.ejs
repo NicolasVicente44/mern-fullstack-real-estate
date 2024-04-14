@@ -111,11 +111,12 @@
         <input type="text" class="form-control" id="tags" name="tags" value="<%= tags.join(', ') %>">
     </div>
 
-    <div class="mb-3">
+    <div class="form-group mb-3">
         <label for="openHouseDates" class="form-label">Open House Dates:</label>
-        <input type="text" class="form-control" id="openHouseDates" name="openHouseDates" value="<%= openHouseDates.join(', ') %>">
+        <input type="text" class="form-control" id="openHouseDates" name="openHouseDates" value="<%= openHouseDates.map(date => date.toLocaleDateString()).join(', ') %>">
     </div>
     <!-- Include other fields as necessary -->
+    
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

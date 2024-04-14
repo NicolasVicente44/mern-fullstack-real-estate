@@ -75,6 +75,8 @@ export const edit = async (req, res, next) => {
     next(error);
   }
 };
+
+
 export const create = async (req, res, next) => {
   try {
     // Extract and validate user input from the request
@@ -183,19 +185,26 @@ export const update = async (req, res, next) => {
       user.email = email;
       
   
-      // Determine the user's role based on the isAgent flag
-      let role;
       if (isAgent) {
-        role = "AGENT";
+        user.role = "AGENT";
+        // Check if agentProfile is provided
+        if (!agentProfile || !agentProfile.agencyName || !agentProfile.licenseNumber) {
+          res.status(400);
+          throw new Error("You must provide an agency name and license number when registering as an agent.");
+        }
+        user.agentProfile = agentProfile;
       } else {
-        role = "USER";
+        user.role = "USER";
+        // If the user is no longer an agent, clear the agentProfile
+        user.agentProfile = null;
       }
-  
       // If user is an agent, update agent profile
-      if (role === "AGENT") {
+      if (user.role === "AGENT") {
         user.agentProfile = agentProfile;
       }
-  
+
+      console.log("is agent: ", isAgent)
+      console.log("role: ", user.role)
       // Validate user data and check for errors
       const validationErrors = user.validateSync();
       if (validationErrors) {
@@ -219,6 +228,7 @@ export const update = async (req, res, next) => {
         fs.unlinkSync(avatar.path);
         await new Promise((resolve) => setTimeout(resolve, 100));
         user.avatar = avatar.filename;
+        
       }
   
       // Save the updated user data
@@ -245,6 +255,7 @@ export const update = async (req, res, next) => {
       ];
       next(error);
     }
+
   };
 
 // Function to remove an existing User

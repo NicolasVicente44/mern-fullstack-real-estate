@@ -22,13 +22,11 @@
         <strong>Status:</strong> <%= listing.status %><br />
         <strong>Tags:</strong> <%= listing.tags.join(', ') %><br />
         <strong>Open House Dates:</strong>
-        <% if (typeof listing.openHouseDates === 'string') { %> <% const
-        datesArray = listing.openHouseDates.split(','); %> <%
-        datesArray.forEach(date => { %> <%= date %><br />
-        <% }); %> <% } else if (Array.isArray(listing.openHouseDates)) { %> <%
-        listing.openHouseDates.forEach(date => { %> <%= date %><br />
-        <% }); %> <% } %>
-
+        <% if (Array.isArray(listing.openHouseDates)) { %>
+          <% listing.openHouseDates.forEach(date => { %>
+            <%= date.toLocaleDateString() %><br />
+          <% }); %>
+        <% } %>
         <br />
       </p>
     </div>

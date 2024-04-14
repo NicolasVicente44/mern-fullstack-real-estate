@@ -10,7 +10,18 @@
     <div>
         <div>
             <p>
-                <%= user.firstName %> <%= user.lastName %>
+                <strong>First Name:</strong> <%= user.firstName %><br>
+                <strong>Last Name:</strong> <%= user.lastName %><br>
+                <strong>Nickname:</strong> <%= user.nickname %><br>
+                <strong>Email:</strong> <%= user.email %><br>
+                <% if (user.role === "AGENT") { %>
+                    <strong>Agency Name:</strong> <%= user.agentProfile.agencyName %><br>
+                    <strong>License Number:</strong> <%= user.agentProfile.licenseNumber %><br>
+                    <strong>Phone Number:</strong> <%= user.agentProfile.phoneNumber %><br>
+                    <strong>Bio:</strong> <%= user.agentProfile.bio %><br>
+                <% } %>
+                <strong>Avatar:</strong> <img src="/avatars/<%= user.avatar %>" alt="Avatar"><br>
+                <strong>Role:</strong> <%= user.role %><br>
             </p>
         </div>
     </div>
