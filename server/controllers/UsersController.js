@@ -1,8 +1,16 @@
 import User from "../models/User.js";
 import fs from "fs";
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Resolve __dirname in ES modules
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const temporaryStorage = process.env.TEMP_FILE_STORAGE || "temp";
 const permanentStorage = "avatars";
+
+// Rest of your code remains unchanged...
+
 
 // Function to display a list of Users (admin access only)
 export const index = async (_, res, next) => {
@@ -31,6 +39,7 @@ export const show = async (req, res, next) => {
       "text/html": () => {
         res.render("users/show", {
           user,
+          avatar: user.avatar,
           title: "User View",
         });
       },
@@ -76,21 +85,17 @@ export const edit = async (req, res, next) => {
   }
 };
 
-
 export const create = async (req, res, next) => {
   try {
     // Extract and validate user input from the request
-    const {
-      firstName,
-      lastName,
-      nickname,
-      email,
-      password,
-      avatar,
-      isAgent,
-      agentProfile,
-    } = req.body;
 
+    const { firstName, lastName, nickname, email, password, avatar } =
+      getStrongParams(req);
+
+    const { isAgent, agentProfile } = req.body;
+
+    console.log(req.body);
+    console.log(avatar);
     // Create a new User instance with the provided data
     let role;
     if (isAgent) {
@@ -109,6 +114,7 @@ export const create = async (req, res, next) => {
       agentProfile,
       role,
     });
+    console.log(user.avatar);
     console.log("role = ", role);
 
     // If user is an agent, handle agent profile
@@ -133,13 +139,13 @@ export const create = async (req, res, next) => {
       throw new Error(message.join("\n"));
     }
 
-    // Handle user avatar (if provided)
-    if (avatar && fs.existsSync(avatar.path)) {
-      fs.copyFileSync(avatar.path, `${permanentStorage}/${avatar.filename}`);
-      await new Promise((resolve) => setTimeout(resolve, 100));
-      fs.unlinkSync(avatar.path);
-      user.avatar = avatar.filename;
-    }
+// Handle user avatar (if provided)
+if (avatar) {
+  fs.renameSync(
+    path.join(__dirname, "..", temporaryStorage, avatar),
+    path.join(__dirname, "..", permanentStorage, avatar)
+  );
+}
 
     // Register the user with Passport's User.register method
     await User.register(user, password);
@@ -171,92 +177,106 @@ export const create = async (req, res, next) => {
 };
 // Function to update an existing User based on form input
 export const update = async (req, res, next) => {
-    try {
-      // Extract and validate user input from the request
-      const { firstName, lastName, nickname, email, password, avatar, isAgent, agentProfile } = req.body;
-  
-      // Find and verify a user based on the provided request parameters
-      let user = await findAndVerifyUser(req);
-  
-      // Update user properties with the provided data
-      user.firstName = firstName;
-      user.lastName = lastName;
-      user.nickname = nickname;
-      user.email = email;
-      
-  
-      if (isAgent) {
-        user.role = "AGENT";
-        // Check if agentProfile is provided
-        if (!agentProfile || !agentProfile.agencyName || !agentProfile.licenseNumber) {
-          res.status(400);
-          throw new Error("You must provide an agency name and license number when registering as an agent.");
-        }
-        user.agentProfile = agentProfile;
-      } else {
-        user.role = "USER";
-        // If the user is no longer an agent, clear the agentProfile
-        user.agentProfile = null;
-      }
-      // If user is an agent, update agent profile
-      if (user.role === "AGENT") {
-        user.agentProfile = agentProfile;
-      }
+  try {
+    // Extract and validate user input from the request
+    const {
+      firstName,
+      lastName,
+      nickname,
+      email,
+      password,
+      avatar,
+      isAgent,
+      agentProfile,
+    } = req.body;
 
-      console.log("is agent: ", isAgent)
-      console.log("role: ", user.role)
-      // Validate user data and check for errors
-      const validationErrors = user.validateSync();
-      if (validationErrors) {
-        // Handle validation errors and display them to the user
-        if (avatar && fs.existsSync(avatar.path)) {
-          fs.unlinkSync(avatar.path);
-        }
-        const message = Object.values(validationErrors.errors).map((error) => error.message);
+    console.log("avatar before setting it to user.avatar: ", avatar);
+    // Find and verify a user based on the provided request parameters
+    let user = await findAndVerifyUser(req);
+
+    // Update user properties with the provided data
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.nickname = nickname;
+    user.email = email;
+    user.avatar = avatar;
+
+    console.log("avatar after setting it to user.avatar: ", avatar);
+    if (isAgent) {
+      user.role = "AGENT";
+      // Check if agentProfile is provided
+      if (
+        !agentProfile ||
+        !agentProfile.agencyName ||
+        !agentProfile.licenseNumber
+      ) {
         res.status(400);
-        throw new Error(message.join("\n"));
+        throw new Error(
+          "You must provide an agency name and license number when registering as an agent."
+        );
       }
-  
-      // Handle user avatar (if provided)
-      if (avatar && fs.existsSync(avatar.path)) {
-        // Delete the previous avatar file, if it exists
-        if (user.avatar && fs.existsSync(`${permanentStorage}/${user.avatar}`)) {
-          fs.unlinkSync(`${permanentStorage}/${user.avatar}`);
-        }
-        fs.copyFileSync(avatar.path, `${permanentStorage}/${avatar.filename}`);
-        await new Promise((resolve) => setTimeout(resolve, 100));
-        fs.unlinkSync(avatar.path);
-        await new Promise((resolve) => setTimeout(resolve, 100));
-        user.avatar = avatar.filename;
-        
-      }
-  
-      // Save the updated user data
-      await user.save();
-  
-      // Redirect to the user list page after successful user update
-      res.format({
-        "text/html": () => {
-          req.session.notifications = [
-            { alertType: "alert-success", message: "User was updated successfully" },
-          ];
-          res.redirect("/users");
-        },
-        "application/json": () => {
-          res.status(201).json({ status: 201, message: "SUCCESS" });
-        },
-        default: () => {
-          res.status(406).send("NOT ACCEPTABLE");
-        },
-      });
-    } catch (error) {
-      req.session.notifications = [
-        { alertType: "alert-danger", message: "User failed to update" },
-      ];
-      next(error);
+      user.agentProfile = agentProfile;
+    } else {
+      user.role = "USER";
+      // If the user is no longer an agent, clear the agentProfile
+      user.agentProfile = null;
+    }
+    // If user is an agent, update agent profile
+    if (user.role === "AGENT") {
+      user.agentProfile = agentProfile;
     }
 
-  };
+    console.log("is agent: ", isAgent);
+    console.log("role: ", user.role);
+    // Validate user data and check for errors
+    const validationErrors = user.validateSync();
+    if (validationErrors) {
+      // Handle validation errors and display them to the user
+      if (avatar && fs.existsSync(avatar.path)) {
+        fs.unlinkSync(avatar.path);
+      }
+      const message = Object.values(validationErrors.errors).map(
+        (error) => error.message
+      );
+      res.status(400);
+      throw new Error(message.join("\n"));
+    }
+      // Handle user avatar (if provided)
+      if (avatar) {
+        fs.renameSync(
+          path.join(__dirname, "..", temporaryStorage, avatar),
+          path.join(__dirname, "..", permanentStorage, avatar)
+        );
+      }
+
+    // Save the updated user data
+    await user.save();
+
+    // Redirect to the user list page after successful user update
+    res.format({
+      "text/html": () => {
+        req.session.notifications = [
+          {
+            alertType: "alert-success",
+            message: "User was updated successfully",
+          },
+        ];
+        res.redirect("/users");
+      },
+      "application/json": () => {
+        res.status(201).json({ status: 201, message: "SUCCESS" });
+      },
+      default: () => {
+        res.status(406).send("NOT ACCEPTABLE");
+      },
+    });
+  } catch (error) {
+    req.session.notifications = [
+      { alertType: "alert-danger", message: "User failed to update" },
+    ];
+    next(error);
+  }
+};
 
 // Function to remove an existing User
 export const remove = async (req, res, next) => {
@@ -320,13 +340,11 @@ async function findAndVerifyUser(req) {
  * @returns { object } - An object containing approved fields
  */
 function getStrongParams(req) {
-  if (req.file) {
-    req.body.avatar = req.file;
-  }
+  // If a file was uploaded, extract the filename from req.file
+  const avatar = req.file ? req.file.filename : undefined;
 
-  // Extract approved fields from the request body
-  const { id, firstName, lastName, nickname, email, avatar, password } =
-    req.body;
+  // Extract other approved fields from the request body
+  const { id, firstName, lastName, nickname, email, password } = req.body;
 
   return { id, firstName, lastName, nickname, email, avatar, password };
 }
