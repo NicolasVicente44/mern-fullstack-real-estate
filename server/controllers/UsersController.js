@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 import fs from "fs";
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from "path";
+import { fileURLToPath } from "url";
 
 // Resolve __dirname in ES modules
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -10,7 +10,6 @@ const temporaryStorage = process.env.TEMP_FILE_STORAGE || "temp";
 const permanentStorage = "avatars";
 
 // Rest of your code remains unchanged...
-
 
 // Function to display a list of Users (admin access only)
 export const index = async (_, res, next) => {
@@ -33,18 +32,15 @@ export const show = async (req, res, next) => {
   try {
     // Find and verify a user based on the provided request parameters
     const user = await findAndVerifyUser(req);
-
-    // Render the user's profile page with the retrieved user data
+    const avatar = user.avatar;
+    // Render the user's profile page with the retrieved user data and avatar
     res.format({
       "text/html": () => {
         res.render("users/show", {
           user,
-          avatar: user.avatar, // Include the avatar property
+          avatar,
           title: "User View",
         });
-        console.log("avatar in show action: ", avatar)
-        console.log("avatar in show action: ", user.avatar)
-      
       },
       "application/json": () => {
         res.status(200).json({ status: 200, message: "SUCCESS", user });
@@ -56,8 +52,8 @@ export const show = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-
 };
+
 
 // Function to display a CMS interface for adding a new User
 export const add = async (_, res, next) => {
@@ -143,13 +139,13 @@ export const create = async (req, res, next) => {
       throw new Error(message.join("\n"));
     }
 
-// Handle user avatar (if provided)
-if (avatar) {
-  fs.renameSync(
-    path.join(__dirname, "..", temporaryStorage, avatar),
-    path.join(__dirname, "..", permanentStorage, avatar)
-  );
-}
+    // Handle user avatar (if provided)
+    if (avatar) {
+      fs.renameSync(
+        path.join(__dirname, "..", temporaryStorage, avatar),
+        path.join(__dirname, "..", permanentStorage, avatar)
+      );
+    }
 
     // Register the user with Passport's User.register method
     await User.register(user, password);
@@ -276,7 +272,6 @@ export const update = async (req, res, next) => {
     next(error);
   }
 };
-
 
 // Function to remove an existing User
 export const remove = async (req, res, next) => {

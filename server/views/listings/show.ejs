@@ -22,11 +22,14 @@
         <strong>Status:</strong> <%= listing.status %><br />
         <strong>Tags:</strong> <%= listing.tags.join(', ') %><br />
         <strong>Open House Dates:</strong>
-        <% if (Array.isArray(listing.openHouseDates)) { %>
-          <% listing.openHouseDates.forEach(date => { %>
-            <%= date.toLocaleDateString() %><br />
-          <% }); %>
-        <% } %>
+        <% listing.images.forEach(function(image) { %>
+        <img
+          class="img-thumbnail"
+          style="max-width: 100px; max-height: 100px"
+          src="listingimages/<%= image %>"
+          />
+        <% }); %>
+
         <br />
       </p>
     </div>

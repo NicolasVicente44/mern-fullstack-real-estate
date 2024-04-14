@@ -1,3 +1,5 @@
+// listingsController.js
+
 import Listing from "../models/Listing.js";
 
 const listingTypes = Listing.schema.path("propertyType").enumValues;
@@ -90,13 +92,18 @@ export const create = async (req, res, next) => {
       squareFootage,
       lotSize,
       yearBuilt,
-      images,
       status,
       agent,
       tags,
       priceHistory,
-      openHouseDates, // Change from openHouseDate to openHouseDates
+      openHouseDates,
     } = req.body;
+
+    // Remove the line expecting a single image filename
+    // const imageFilename = req.imageFilename; // Get the image filename from the request
+
+    const { uploadedImages } = req; // Get the uploaded images array from the request
+    console.log("uploadedImages: ", uploadedImages); // Check if it contains filenames
 
     const newListing = new Listing({
       address,
@@ -108,27 +115,21 @@ export const create = async (req, res, next) => {
       squareFootage,
       lotSize,
       yearBuilt,
-      images,
+      images: uploadedImages, // Assign the uploadedImages array to the 'images' field
       status,
       agent,
       tags,
       priceHistory,
-      openHouseDates, // Change from openHouseDate to openHouseDates
-      // Set createdBy to the user's ID from the request, if available
+      openHouseDates,
       author: req?.user?.id,
     });
 
     await newListing.save();
 
-    console.log(req.body);
-
     res.format({
       "text/html": () => {
         req.session.notifications = [
-          {
-            alertType: "alert-success",
-            message: "Listing was created successfully",
-          },
+          { alertType: "alert-success", message: "Listing was created successfully" },
         ];
         res.redirect("/listings");
       },
@@ -146,7 +147,6 @@ export const create = async (req, res, next) => {
     next(error);
   }
 };
-
 export const update = async (req, res, next) => {
   try {
     const {
@@ -159,7 +159,6 @@ export const update = async (req, res, next) => {
       squareFootage,
       lotSize,
       yearBuilt,
-      images,
       status,
       agent,
       tags,
@@ -167,13 +166,14 @@ export const update = async (req, res, next) => {
       openHouseDates,
     } = req.body;
 
+    const imageFilename = req.imageFilename; // Get the image filename from the request
+
     const listing = await Listing.findById(req.params.id);
-    // If the listing doesn't exist, return a 404 response
+
     if (!listing) {
       return res.status(404).json({ message: "Listing not found" });
     }
 
-    // Update all fields of the listing with the new values from the request body
     listing.address = address;
     listing.price = price;
     listing.description = description;
@@ -183,12 +183,12 @@ export const update = async (req, res, next) => {
     listing.squareFootage = squareFootage;
     listing.lotSize = lotSize;
     listing.yearBuilt = yearBuilt;
-    listing.images = images;
+    listing.images = [imageFilename]; // Assign the image filename to the 'images' field
     listing.status = status;
     listing.agent = agent;
     listing.tags = tags;
     listing.priceHistory = priceHistory;
-    listing.openHouseDate = openHouseDates;
+    listing.openHouseDates = openHouseDates;
 
     await listing.save();
 

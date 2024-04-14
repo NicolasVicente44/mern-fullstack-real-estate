@@ -51,6 +51,8 @@ app.set("view engine", "ejs");
 // This sets the public assets folder
 app.use(express.static("public"));
 app.use(express.static("avatars"));
+app.use(express.static("listingimages"));
+
 
 // Middleware to handle JSON
 app.use(express.json());

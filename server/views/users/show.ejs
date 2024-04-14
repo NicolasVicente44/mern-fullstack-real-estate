@@ -1,32 +1,39 @@
 <%- include("../shared/_header") %>
 
 <div class="container mt-5">
-    <h1>User Profile</h1>
+  <h1>User Profile</h1>
 
-    <hr class="my-5">
+  <hr class="my-5" />
 
-    <a href="/users/<%= user.id %>/edit">Edit user</a>
+  <a href="/users/<%= user.id %>/edit">Edit user</a>
 
+  <div>
     <div>
-        <div>
-            <p>
-                <strong>First Name:</strong> <%= user.firstName %><br>
-                <strong>Last Name:</strong> <%= user.lastName %><br>
-                <strong>Nickname:</strong> <%= user.nickname %><br>
-                <strong>Email:</strong> <%= user.email %><br>
-                <% if (user.role === "AGENT") { %>
-                    <strong>Agency Name:</strong> <%= user.agentProfile.agencyName %><br>
-                    <strong>License Number:</strong> <%= user.agentProfile.licenseNumber %><br>
-                    <strong>Phone Number:</strong> <%= user.agentProfile.phoneNumber %><br>
-                    <strong>Bio:</strong> <%= user.agentProfile.bio %><br>
-                <% } %>
-                <img class="img-thumbnail" style="max-width: 100px; max-height: 100px;" src="<%= avatar %>">
-                <strong>Role:</strong> <%= user.role %><br>
-        </p>
-        </div>
+      <p>
+        <strong>First Name:</strong> <%= user.firstName %><br />
+        <strong>Last Name:</strong> <%= user.lastName %><br />
+        <strong>Nickname:</strong> <%= user.nickname %><br />
+        <strong>Email:</strong> <%= user.email %><br />
+        <% if (user.role === "AGENT") { %>
+        <strong>Agency Name:</strong> <%= user.agentProfile.agencyName %><br />
+        <strong>License Number:</strong> <%= user.agentProfile.licenseNumber
+        %><br />
+        <strong>Phone Number:</strong> <%= user.agentProfile.phoneNumber %><br />
+        <strong>Bio:</strong> <%= user.agentProfile.bio %><br />
+        <% } %>
+        <strong>Role:</strong> <%= user.role %><br />
+        <% if (user.avatar) { %>
+        <img
+          class="img-thumbnail"
+          style="max-width: 100px; max-height: 100px"
+          src="<%= user.avatar %>"
+        />
+        <% } else { %> <% } %>
+      </p>
     </div>
+  </div>
 
-    <a href="/users">Back to users</a>
+  <a href="/users">Back to users</a>
 </div>
 
 <%- include("../shared/_footer") %>

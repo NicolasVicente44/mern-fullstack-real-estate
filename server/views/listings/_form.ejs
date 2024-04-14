@@ -33,7 +33,7 @@
 }
 %>
 
-<form action="/listings<%= action %>" method="post" class="mt-3">
+<form action="/listings<%= action %>" enctype="multipart/form-data" method="post" class="mt-3">
     <input type="hidden" name="_method" value="<%= method %>">
 
     <div class="mb-3">
@@ -93,7 +93,7 @@
 
     <div class="mb-3">
         <label for="images" class="form-label">Images:</label>
-        <input type="file" class="form-control" id="images" name="images" multiple>
+        <input type="file" class="form-control" id="images" multiple name="images" multiple>
     </div>
 
     <div class="mb-3">
