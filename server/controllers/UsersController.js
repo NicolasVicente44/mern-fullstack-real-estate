@@ -39,9 +39,12 @@ export const show = async (req, res, next) => {
       "text/html": () => {
         res.render("users/show", {
           user,
-          avatar: user.avatar,
+          avatar: user.avatar, // Include the avatar property
           title: "User View",
         });
+        console.log("avatar in show action: ", avatar)
+        console.log("avatar in show action: ", user.avatar)
+      
       },
       "application/json": () => {
         res.status(200).json({ status: 200, message: "SUCCESS", user });
@@ -53,6 +56,7 @@ export const show = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+
 };
 
 // Function to display a CMS interface for adding a new User
@@ -185,12 +189,10 @@ export const update = async (req, res, next) => {
       nickname,
       email,
       password,
-      avatar,
       isAgent,
       agentProfile,
     } = req.body;
 
-    console.log("avatar before setting it to user.avatar: ", avatar);
     // Find and verify a user based on the provided request parameters
     let user = await findAndVerifyUser(req);
 
@@ -199,9 +201,19 @@ export const update = async (req, res, next) => {
     user.lastName = lastName;
     user.nickname = nickname;
     user.email = email;
-    user.avatar = avatar;
 
-    console.log("avatar after setting it to user.avatar: ", avatar);
+    // Update avatar if a new one is provided
+    if (req.file) {
+      user.avatar = req.file.filename;
+
+      // Handle avatar file update (rename and move to permanent storage)
+      fs.renameSync(
+        req.file.path,
+        path.join(__dirname, "..", permanentStorage, req.file.filename)
+      );
+    }
+
+    // Update user role and agent profile
     if (isAgent) {
       user.role = "AGENT";
       // Check if agentProfile is provided
@@ -221,19 +233,13 @@ export const update = async (req, res, next) => {
       // If the user is no longer an agent, clear the agentProfile
       user.agentProfile = null;
     }
-    // If user is an agent, update agent profile
-    if (user.role === "AGENT") {
-      user.agentProfile = agentProfile;
-    }
 
-    console.log("is agent: ", isAgent);
-    console.log("role: ", user.role);
     // Validate user data and check for errors
     const validationErrors = user.validateSync();
     if (validationErrors) {
       // Handle validation errors and display them to the user
-      if (avatar && fs.existsSync(avatar.path)) {
-        fs.unlinkSync(avatar.path);
+      if (req.file) {
+        fs.unlinkSync(req.file.path);
       }
       const message = Object.values(validationErrors.errors).map(
         (error) => error.message
@@ -241,13 +247,6 @@ export const update = async (req, res, next) => {
       res.status(400);
       throw new Error(message.join("\n"));
     }
-      // Handle user avatar (if provided)
-      if (avatar) {
-        fs.renameSync(
-          path.join(__dirname, "..", temporaryStorage, avatar),
-          path.join(__dirname, "..", permanentStorage, avatar)
-        );
-      }
 
     // Save the updated user data
     await user.save();
@@ -277,6 +276,7 @@ export const update = async (req, res, next) => {
     next(error);
   }
 };
+
 
 // Function to remove an existing User
 export const remove = async (req, res, next) => {
