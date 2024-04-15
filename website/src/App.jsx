@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import './styles.css';
 
 const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
@@ -11,6 +12,8 @@ export const useAuth = () => useContext(AuthContext);
 // Lazy load the components
 import HomePage from "./pages/Home";
 import Cookies from "js-cookie";
+import MainPage from "./pages/Home";
+import "./styles.css";
 const AboutPage = lazy(() => import("./pages/About"));
 const ContactPage = lazy(() => import("./pages/Contact"));
 const ResourcesPage = lazy(() => import("./pages/Resources/Index"));
@@ -55,7 +58,7 @@ const App = () => {
                 <Suspense fallback={<div>Loading...</div>}>
                     {" "}
                     <Routes>
-                        <Route path="/" element={<HomePage />} />
+                        <Route path="/" element={<MainPage />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/contact" element={<ContactPage />} />
                         <Route path="/resources" element={<ResourcesPage />} />

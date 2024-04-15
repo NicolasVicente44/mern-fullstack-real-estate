@@ -22,10 +22,10 @@ const Register = () => {
     };
 
     return (
-        <div className="container">
+        <div>
             <PageTitle title="Register" />
             <h1>Register</h1>
-            <hr className="my-3" />
+            <hr />
 
             <Form user={user} setUser={setUser} submitForm={submitForm} submitLabel="Register" />
         </div>

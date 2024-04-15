@@ -30,25 +30,23 @@ const Login = () => {
     };
 
     return (
-        <div className="container">
+        <div>
             <PageTitle title="Login" />
             <h1>Login</h1>
-            <hr className="my-3" />
+            <hr />
 
             <form onSubmit={submitForm}>
-                <div className="form-group my-3">
+                <div>
                     <label htmlFor="email">Email</label>
-                    <input type="email" className="form-control" id="email" name="email" onChange={(e) => setUser({ ...user, email: e.target.value })} />
+                    <input type="email" id="email" name="email" onChange={(e) => setUser({ ...user, email: e.target.value })} />
                 </div>
 
-                <div className="form-group my-3">
+                <div>
                     <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control" id="password" name="password" onChange={(e) => setUser({ ...user, password: e.target.value })} />
+                    <input type="password" id="password" name="password" onChange={(e) => setUser({ ...user, password: e.target.value })} />
                 </div>
 
-                <button type="submit" className="btn btn-primary">
-                    Login
-                </button>
+                <button type="submit">Login</button>
             </form>
         </div>
     );

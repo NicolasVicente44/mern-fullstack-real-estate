@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import PageTitle from "../../components/PageTitle";
 import axios from "axios";
-import styles from "./Resources.module.css";
 
 const Show = () => {
     axios.defaults.withCredentials = true;
@@ -21,20 +20,18 @@ const Show = () => {
     }, [id]);
 
     return (
-        <div className="container">
+        <div>
             <PageTitle title="Resource" />
 
             <h1>Resource</h1>
 
-            <hr className="my-3" />
+            <hr />
 
-            <div className="d-flex flex-wrap justify-content-center">
-                <div className={styles.card}>
-                    <div className={styles.cardBody}>
-                        <h5 className={styles.cardTitle}>{resource.content}</h5>
-                        <p className={styles.cardText}>{resource.type}</p>
-                        <p className={styles.cardText}>{resource.author?.nickname}</p>
-                    </div>
+            <div>
+                <div>
+                    <h5>{resource.content}</h5>
+                    <p>{resource.type}</p>
+                    <p>{resource.author?.nickname}</p>
                 </div>
             </div>
         </div>

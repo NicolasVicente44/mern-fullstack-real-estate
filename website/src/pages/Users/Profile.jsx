@@ -26,12 +26,12 @@ const Profile = () => {
     };
 
     return (
-        <div className="container">
+        <div>
             <PageTitle title="Profile" />
             <h1>Profile</h1>
             {user.firstName ? <h2>{`Hello, ${user.firstName} ${user.lastName}!`}</h2> : null}
 
-            <hr className="my-3" />
+            <hr />
 
             <Form user={user} setUser={setUser} submitForm={submitForm} submitLabel="Update" />
         </div>

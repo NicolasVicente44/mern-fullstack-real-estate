@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Navigation.module.css";
 import { useAuth } from "../App";
 
 const Navigation = () => {
@@ -25,15 +24,15 @@ const Navigation = () => {
     ];
 
     return (
-        <nav className={`navbar navbar-expand-lg ${styles.navbar}`}>
-            <div className="container-fluid">
-                <Link className={`navbar-brand text-white ${styles.brand}`} to="/">
+        <nav>
+            <div>
+                <Link to="/">
                     MyApp
                 </Link>
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul>
                     {pageLinks.map(({ label, link }, index) => (
-                        <li className="nav-item" key={index}>
-                            <Link className={`nav-link ${styles.navLink}`} to={link}>
+                        <li key={index}>
+                            <Link to={link}>
                                 {label}
                             </Link>
                         </li>

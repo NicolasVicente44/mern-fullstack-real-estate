@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PageTitle from "../../components/PageTitle";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import 'tailwindcss/tailwind.css';
 
 const Resources = () => {
     axios.defaults.withCredentials = true;
@@ -19,13 +20,13 @@ const Resources = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div>
             <PageTitle title="Resources" />
             <h1>Resources</h1>
-            <hr className="my-3" />
+            <hr />
 
-            <div className="d-flex flex-wrap justify-content-center">
-                <table className="table table-hover">
+            <div>
+                <table>
                     <thead>
                         <tr>
                             <th>Content</th>

@@ -15,13 +15,13 @@ const Delete = () => {
     };
 
     return (
-        <div className="container">
+        <div>
             <h1>Delete Resource</h1>
 
-            <hr className="my-3" />
+            <hr />
 
-            <div className="d-flex flex-wrap justify-content-center">
-                <button onClick={handleDelete} className="btn btn-danger">
+            <div>
+                <button onClick={handleDelete}>
                     Delete
                 </button>
             </div>

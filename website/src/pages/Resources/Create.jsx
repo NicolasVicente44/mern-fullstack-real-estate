@@ -26,29 +26,27 @@ const Create = () => {
     };
 
     return (
-        <div className="container">
+        <div>
             <PageTitle title="Create Resource" />
 
             <h1>Create Resource</h1>
 
-            <hr className="my-3" />
+            <hr />
 
-            <div className="d-flex flex-wrap justify-content-center">
+            <div>
                 <form onSubmit={handleSubmit}>
-                    <div className="form-group">
+                    <div>
                         <label htmlFor="content">Content</label>
                         <textarea
-                            className="form-control"
                             id="content"
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
                         ></textarea>
                     </div>
 
-                    <div className="form-group">
+                    <div>
                         <label htmlFor="type">Type</label>
                         <select
-                            className="form-control"
                             id="type"
                             value={type}
                             onChange={(e) => setType(e.target.value)}
@@ -58,7 +56,7 @@ const Create = () => {
                         </select>
                     </div>
 
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit">
                         Create
                     </button>
                 </form>
