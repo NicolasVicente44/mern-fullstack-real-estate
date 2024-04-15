@@ -10,6 +10,7 @@ const Home = () => {
         <p class="text-xl text-blue-700">Hello, Tailwind CSS!</p>
         <p className="text-blue-900">dsfdsf</p>
         <h1 className="text-8xl text-yellow-400">sdfdsfdsfdsfdfs</h1>
+        <h1 className="text-6xl text-red-500">Hello world</h1>
       </div>
     </div>
   );
