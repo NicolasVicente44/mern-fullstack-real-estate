@@ -32,13 +32,11 @@ export const show = async (req, res, next) => {
   try {
     // Find and verify a user based on the provided request parameters
     const user = await findAndVerifyUser(req);
-    const avatar = user.avatar;
     // Render the user's profile page with the retrieved user data and avatar
     res.format({
       "text/html": () => {
         res.render("users/show", {
           user,
-          avatar,
           title: "User View",
         });
       },
@@ -317,6 +315,7 @@ export const remove = async (req, res, next) => {
 
 // Helper function to find and verify a user by their ID
 async function findAndVerifyUser(req) {
+  console.log("req params id: ", req.params.id)
   const user = await User.findById(req.params.id);
 
   if (!user) {
