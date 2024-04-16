@@ -59,10 +59,28 @@ if (typeof user !== "undefined") {
         <input type="password" class="form-control" id="password" name="password" required>
     </div>
 
+   
+    <% if (avatar) { %>
+        <div class="mb-3">
+          <label for="avatar" class="form-label">Avatar:</label>
+          <div>
+            <img
+              src="http://localhost:1111/<%= user.avatar %>"
+              style="max-width: 50px; max-height: 50px"
+              alt="Avatar"
+              class="img-thumbnail"
+            />
+          </div>
+        </div>
+      <% } else { %>
+     
     <div class="mb-3">
         <label for="avatar" class="form-label">Avatar:</label>
         <input type="file" class="form-control" id="avatar" name="avatar" value="<%= avatar %>">
     </div>
+      <% } %>
+      
+
 
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="isAgent" name="isAgent" <% if (isAgent) { %> checked <% } %>>

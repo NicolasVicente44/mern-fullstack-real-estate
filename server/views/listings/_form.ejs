@@ -91,10 +91,24 @@
         <input type="number" class="form-control" id="yearBuilt" name="yearBuilt" value="<%= yearBuilt %>">
     </div>
 
-    <div class="mb-3">
-        <label for="images" class="form-label">Images:</label>
-        <input type="file" class="form-control" id="images" multiple name="images" multiple>
-    </div>
+    <% if (images && images.length) { %>
+        <div class="mb-3">
+            <label for="images" class="form-label">Images:</label>
+            <div>
+                <% images.forEach(function(image) { %>
+                    <img src="http://localhost:1111/<%= image %>"          style="max-width: 50px; max-height: 50px"
+                    alt="Image" class="img-thumbnail">
+                <% }); %>
+            </div>
+        </div>
+    <% } else { %>
+        
+        <div class="mb-3">
+            <label for="images" class="form-label">Images:</label>
+            <input type="file" class="form-control" id="images" multiple name="images" multiple>
+        </div>
+    <% } %>
+    
 
     <div class="mb-3">
         <label for="status" class="form-label">Status:</label>
@@ -113,9 +127,13 @@
 
     <div class="form-group mb-3">
         <label for="openHouseDates" class="form-label">Open House Dates:</label>
-        <input type="text" class="form-control" id="openHouseDates" name="openHouseDates" value="<%= openHouseDates.map(date => date.toLocaleDateString()).join(', ') %>">
+        <% if (openHouseDates && openHouseDates.length) { %>
+            <input type="text" class="form-control" id="openHouseDates" name="openHouseDates" value="<%= openHouseDates.map(date => date ? date.toLocaleDateString() : '').join(', ') %>">
+        <% } else { %>
+            <input type="text" class="form-control" id="openHouseDates" name="openHouseDates" value="">
+        <% } %>
     </div>
-    <!-- Include other fields as necessary -->
+    
     
 
     <button type="submit" class="btn btn-primary">Submit</button>
