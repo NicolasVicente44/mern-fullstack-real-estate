@@ -9,14 +9,14 @@ const Delete = () => {
     const navigate = useNavigate();
 
     const handleDelete = async () => {
-        await axios.delete(`/api/resources/${id}`);
+        await axios.delete(`/api/listings/${id}`);
 
-        navigate("/resources");
+        navigate("/listings");
     };
 
     return (
         <div>
-            <h1>Delete Resource</h1>
+            <h1>Delete Listing</h1>
 
             <hr />
 

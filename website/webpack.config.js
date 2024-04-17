@@ -1,6 +1,5 @@
-import path from "path"; // Import path module directly
+import path from "path";
 import { fileURLToPath } from "url";
-
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { PurgeCSSPlugin } from "purgecss-webpack-plugin";
 import * as glob from "glob";
@@ -41,6 +40,13 @@ const config = {
             },
           },
         ],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/images/[name][ext]",
+        },
       },
     ],
   },

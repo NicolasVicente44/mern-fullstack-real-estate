@@ -7,13 +7,13 @@ const Show = () => {
     axios.defaults.withCredentials = true;
     
     const { id } = useParams();
-    const [resource, setResource] = React.useState({});
+    const [listing, setListing] = React.useState({});
 
     React.useEffect(() => {
         const fetchData = async () => {
-            const resourceResp = await axios.get(`/api/resources/${id}`);
+            const listingResp = await axios.get(`/api/listings/${id}`);
             
-            setResource(resourceResp.data);
+            setListing(listingResp.data);
         };
 
         fetchData();
@@ -21,17 +21,17 @@ const Show = () => {
 
     return (
         <div>
-            <PageTitle title="Resource" />
+            <PageTitle title="Listing" />
 
-            <h1>Resource</h1>
+            <h1>Listing</h1>
 
             <hr />
 
             <div>
                 <div>
-                    <h5>{resource.content}</h5>
-                    <p>{resource.type}</p>
-                    <p>{resource.author?.nickname}</p>
+                    <h5>{listing.content}</h5>
+                    <p>{listing.type}</p>
+                    <p>{listing.author?.nickname}</p>
                 </div>
             </div>
         </div>

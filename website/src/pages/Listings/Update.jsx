@@ -1,35 +1,44 @@
 import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import PageTitle from "../../components/PageTitle";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
-const Create = () => {
+const Update = () => {
     axios.defaults.withCredentials = true;
 
+    const { id } = useParams();
     const navigate = useNavigate();
     const [content, setContent] = React.useState("");
     const [type, setType] = React.useState("QUESTION");
 
+    React.useEffect(() => {
+        const fetchData = async () => {
+            const listingResp = await axios.get(`/api/listings/${id}`);
+
+            setContent(listingResp.data.content);
+            setType(listingResp.data.type);
+        };
+
+        fetchData();
+    }, [id]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const resource = {
+        const listing = {
             content,
             type,
         };
 
-        await axios.post("/api/resources", resource);
-        navigate("/resources");
-
-        setContent("");
-        setType("QUESTION");
+        await axios.put(`/api/listings/${id}`, listing);
+        navigate("/listings");
     };
 
     return (
         <div>
-            <PageTitle title="Create Resource" />
+            <PageTitle title="Update Listing" />
 
-            <h1>Create Resource</h1>
+            <h1>Update Listing</h1>
 
             <hr />
 
@@ -57,7 +66,7 @@ const Create = () => {
                     </div>
 
                     <button type="submit">
-                        Create
+                        Update
                     </button>
                 </form>
             </div>
@@ -65,4 +74,4 @@ const Create = () => {
     );
 };
 
-export default Create;
+export default Update;

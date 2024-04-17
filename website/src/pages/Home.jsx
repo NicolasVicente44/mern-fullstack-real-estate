@@ -1,16 +1,22 @@
 import React from "react";
 import PageTitle from "../components/PageTitle";
+import Hero from "../components/Hero";
+import Gallery from "../components/Gallery";
+import Value from "../components/Value";
+import Testimonial from "../components/Testimonial";
+import CTA from "../components/CTA";
+import Partner from "../components/Partner";
 
 const Home = () => {
   return (
     <div>
       <PageTitle title="Home" />
-      <h1 className="text-red-500 text-6xl">Resources Against Humanity</h1>
-      <div class="bg-gray-200 p-8 mb-8">
-        <p class="text-xl text-blue-700">Hello, Tailwind CSS!</p>
-        <p className="text-blue-900">dsfdsf</p>
-        <h1 className="text-8xl text-yellow-400">dsfdsf</h1>
-      </div>
+      <Hero />
+      <Gallery />
+      <Value />
+      <Testimonial />
+      <CTA />
+      <Partner />
     </div>
   );
 };

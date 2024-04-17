@@ -4,16 +4,16 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import 'tailwindcss/tailwind.css';
 
-const Resources = () => {
+const Listings = () => {
     axios.defaults.withCredentials = true;
     
-    const [resources, setResources] = useState([]);
+    const [listings, setListings] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const resourceResp = await axios.get("/api/resources");
+            const listingResp = await axios.get("/api/listings");
 
-            setResources(resourceResp.data);
+            setListings(listingResp.data);
         };
 
         fetchData();
@@ -21,8 +21,8 @@ const Resources = () => {
 
     return (
         <div>
-            <PageTitle title="Resources" />
-            <h1>Resources</h1>
+            <PageTitle title="Listings" />
+            <h1>Listings</h1>
             <hr />
 
             <div>
@@ -37,15 +37,15 @@ const Resources = () => {
                     </thead>
 
                     <tbody>
-                        {resources.map((resource, index) => (
+                        {listings.map((listing, index) => (
                             <tr key={index}>
-                                <td>{resource.content}</td>
-                                <td>{resource.type}</td>
-                                <td>{resource.author?.nickname}</td>
+                                <td>{listing.content}</td>
+                                <td>{listing.type}</td>
+                                <td>{listing.author?.nickname}</td>
                                 <td>
-                                    <Link to={`/resources/${resource._id}`}>View</Link>&nbsp;|&nbsp;
-                                    <Link to={`/resources/${resource._id}/update`}>Update</Link>&nbsp;|&nbsp;
-                                    <Link to={`/resources/${resource._id}/delete`}>Delete</Link>
+                                    <Link to={`/listings/${listing._id}`}>View</Link>&nbsp;|&nbsp;
+                                    <Link to={`/listings/${listing._id}/update`}>Update</Link>&nbsp;|&nbsp;
+                                    <Link to={`/listings/${listing._id}/delete`}>Delete</Link>
                                 </td>
                             </tr>
                         ))}
@@ -56,4 +56,4 @@ const Resources = () => {
     );
 };
 
-export default Resources;
+export default Listings;
