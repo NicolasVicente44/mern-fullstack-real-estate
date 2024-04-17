@@ -1,14 +1,14 @@
 import { Router } from "express";
-import * as Resource from "./facade/controllers/ResourcesController.js";
+import * as Listing from "./facade/controllers/ListingController.js";
 import * as User from "./facade/controllers/UsersController.js";
 
 const router = Router();
 
-router.get("/resources", Resource.index);
-router.get("/resources/:id", Resource.show);
-router.post("/resources", Resource.create);
-router.put("/resources/:id", Resource.update);
-router.delete("/resources/:id", Resource.destroy);
+router.get("/listings", Listing.index);
+router.get("/listings/:id", Listing.show);
+router.post("/listings", Listing.create);
+router.put("/listings/:id", Listing.update);
+router.delete("/listings/:id", Listing.destroy);
 
 router.get("/users/:id", User.show);
 router.post("/users", User.create);
