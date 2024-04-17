@@ -1,14 +1,17 @@
 <%- include("../shared/_header") %>
 
 <div class="container mt-5">
-  <h1>User Profile</h1>
+  <div class="text-center">  <h1>User Profile</h1>
+  </div>
 
   <hr class="my-5" />
-
+<div class="text-center mb-4">
   <a href="/users/<%= user.id %>/edit">Edit user</a>
 
-  <div>
-    <div>
+</div>
+
+<div class="container d-flex justify-content-center">
+  <div class="">
       <p>
         <strong>First Name:</strong> <%= user.firstName %><br />
         <strong>Last Name:</strong> <%= user.lastName %><br />
@@ -23,17 +26,25 @@
         <% } %>
         <strong>Role:</strong> <%= user.role %><br />
         <% if (user.avatar) { %>
-        <img
-          class="img-thumbnail"
-          style="max-width: 50px; max-height: 50px"
-          src="http://localhost:1111/<%= user.avatar %>"
-        />
+          <div class="text-center">
+            <img
+            class="img-thumbnail rounded-circle "
+            style="width: 150px; height: 150px; object-fit: cover"
+            src="http://localhost:1111/<%= user.avatar %>"
+          />
+          </div>
+     
         <% } else { %> <% } %>
       </p>
     </div>
   </div>
 
-  <a href="/users">Back to users</a>
+  
+
+  <div class="text-center mt-4">
+    <a href="/users">Back to users</a>
+
+  </div>
 </div>
 
 <%- include("../shared/_footer") %>

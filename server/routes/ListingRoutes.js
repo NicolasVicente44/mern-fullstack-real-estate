@@ -96,6 +96,7 @@ router.put(
   handleImageUpload,
   (req, res) => {
     console.log("files in routes for listing: ", req.files); // Check if the 'image' file is present in req.files
+    console.log('update route handler called');
 
     const { imageFilename } = req;
     update(req, res, { uploadedImages: imageFilename });

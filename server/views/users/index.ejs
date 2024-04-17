@@ -1,67 +1,79 @@
 <%- include("../shared/_header") %>
 
 <div class="container mt-5">
-    <h1>User List</h1>
+  <div>
+    <h1 class="text-center">User List</h1>
+  </div>
 
-    <hr class="my-5">
+  <hr class="my-5" />
 
-    <a href="/users/new">Create a new user</a>
+  <div>
+    <a class="text-center" href="/users/new"><h3>Create a new user</h3></a>
+  </div>
 
-    <table class="table table-striped table-bordered">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Nickname</th>
-                <th>Avatar</th>
-                <th>Last Updated</th>
-                <th>Agency Name</th>
-                <th>License Number</th>
-                <th>Phone Number</th>
-                <th>Bio</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+  <table class="table table-striped table-bordered container">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Nickname</th>
+        <th>Avatar</th>
+        <th>Last Updated</th>
+        <th>Agency Name</th>
+        <th>License Number</th>
+        <th>Phone Number</th>
+        <th>Bio</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
 
-        <tbody>
-            <% if (users && users.length > 0) { %>
-                <% users.forEach(({ id, firstName, lastName, email, nickname, avatar, updatedAt, agentProfile }) => { %>
-                    <tr>
-                        <td><%= firstName %></td>
-                        <td><%= lastName %></td>
-                        <td><%= email %></td>
-                        <td><%= nickname %></td>
-                        <td>
-                            <img class="img-thumbnail" style="max-width: 100px; max-height: 100px;" src="<%= avatar %>">
-                        </td>
-                        <td><%= updatedAt %></td>
-                        <!-- Display agent profile fields if available -->
-                        <% if (agentProfile) { %>
-                            <td><%= agentProfile.agencyName || "" %></td>
-                            <td><%= agentProfile.licenseNumber || "" %></td>
-                            <td><%= agentProfile.phoneNumber || "" %></td>
-                            <td><%= agentProfile.bio || "" %></td>
-                        <% } else { %>
-                            <!-- If user is not an agent, leave these columns empty -->
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        <% } %>
-                        <td>
-                            <a href="/users/<%= id %>">view</a> | 
-                            <a href="/users/<%= id %>/edit">edit</a> | 
-                            <form action="/users/<%= id %>" method="post" onsubmit="return confirm('Are you sure you want to delete this resource?')">
-                                <input type="hidden" name="_method" value="delete">
-                                <button class="standard-link" type="submit">delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                <% }) %>
+    <tbody>
+      <% if (users && users.length > 0) { %> <% users.forEach(({ id, firstName,
+      lastName, email, nickname, avatar, updatedAt, agentProfile }) => { %>
+      <tr>
+        <td><%= firstName %></td>
+        <td><%= lastName %></td>
+        <td><%= email %></td>
+        <td><%= nickname %></td>
+        <td>
+            <% if (avatar) { %>
+                <img class="img-thumbnail rounded-circle" style="width: 150px; height: 100px; object-fit: cover;" src="<%= avatar %>" alt="User Avatar">
+            <% } else { %>
+                <img class="img-thumbnail rounded-circle" style="width: 160px; height: 100px;" src="http://localhost:1111/Placeholder.jpg" alt="Placeholder Avatar">
             <% } %>
-        </tbody>
-    </table>
+            
+        </td>
+        <td><%= updatedAt %></td>
+        <!-- Display agent profile fields if available -->
+        <% if (agentProfile) { %>
+        <td><%= agentProfile.agencyName || "" %></td>
+        <td><%= agentProfile.licenseNumber || "" %></td>
+        <td><%= agentProfile.phoneNumber || "" %></td>
+        <td><%= agentProfile.bio || "" %></td>
+        <% } else { %>
+        <!-- If user is not an agent, leave these columns empty -->
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <% } %>
+        <td class="text-center">
+          <a href="/users/<%= id %>">view</a>
+          <a href="/users/<%= id %>/edit">edit</a>
+          <form
+            action="/users/<%= id %>"
+            method="post"
+            onsubmit="return confirm('Are you sure you want to delete this resource?')"
+          >
+            <input type="hidden" name="_method" value="delete" />
+            <button class="standard-link" type="submit">delete</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %> <% } %>
+    </tbody>
+  </table>
 </div>
 
 <%- include("../shared/_footer") %>

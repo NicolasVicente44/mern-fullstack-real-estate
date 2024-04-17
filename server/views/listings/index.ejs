@@ -1,11 +1,16 @@
 <%- include("../shared/_header") %>
 
 <div class="container mt-5">
-  <h1>Listings</h1>
+
+  <div class="text-center">
+    <h1>Listings</h1>
+
+  </div>
 
   <hr class="my-5" />
-
-  <a href="/listings/new">Create a new listing</a>
+  <div class="text-center mb-4">
+    <a href="/listings/new"><h3>Create a new listing</h3></a>
+  </div>
 
   <table class="table table-striped table-bordered">
     <thead>
@@ -21,6 +26,7 @@
         <th>Year Built</th>
         <th>Status</th>
         <th>Tags</th>
+        <th>Images</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -28,7 +34,7 @@
     <tbody>
       <% if (listings && listings.length > 0) { %> <% listings.forEach(({ id,
       address, price, description, propertyType, bedrooms, bathrooms,
-      squareFootage, lotSize, yearBuilt, status, tags }) => { %>
+      squareFootage, lotSize, yearBuilt, status, tags, images }) => { %>
       <tr>
         <td><%= address %></td>
         <td><%= price %></td>
@@ -42,6 +48,7 @@
         <td><%= status %></td>
 
         <td><%= tags.join(', ') %></td>
+        <td><%= images ? "Yes" : "No" %></td>
 
         <td>
           <a href="/listings/<%= id %>">view</a> |

@@ -190,6 +190,9 @@ export const update = async (req, res, next) => {
     listing.priceHistory = priceHistory;
     listing.openHouseDates = openHouseDates;
 
+
+    console.log(listing)
+    console.log(req.body)
     await listing.save();
 
     res.format({

@@ -1,13 +1,17 @@
 <%- include("../shared/_header") %>
 
 <div class="container mt-5">
-  <h1>Listing Details</h1>
+  <div class="text-center">
+    <h1>Listing Details</h1>
+  </div>
 
   <hr class="my-5" />
 
-  <a href="/listings/<%= listing.id %>/edit">Edit listing</a>
+  <div class="text-center mb-4">
+    <a href="/listings/<%= listing.id %>/edit">Edit listing</a>
+  </div>
 
-  <div>
+  <div class="container d-flex justify-content-center mb-4 mt-4">
     <div class="listing-body">
       <p class="listing-text">
         <strong>Address:</strong> <%= listing.address %><br />
@@ -22,20 +26,26 @@
         <strong>Status:</strong> <%= listing.status %><br />
         <strong>Tags:</strong> <%= listing.tags.join(', ') %><br />
         <strong>Open House Dates:</strong>
+
+        <br />
+
+        <strong>Listing Images:</strong>
+      </p>
+      <div class="text-center">
         <% listing.images.forEach(function(image) { %>
         <img
           class="img-thumbnail"
-          style="max-width: 100px; max-height: 100px"
+          style="width: 200px; height: 200px; object-fit: cover"
           src="http://localhost:1111/<%= image %>"
-          />
+        />
         <% }); %>
-
-        <br />
-      </p>
+      </div>
     </div>
   </div>
 
-  <a href="/listings">Back to List</a>
+  <div class="text-center mt-4">
+    <a href="/listings">Back to List</a>
+  </div>
 </div>
 
 <%- include("../shared/_footer") %>
