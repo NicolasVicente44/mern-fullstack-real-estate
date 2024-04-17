@@ -62,7 +62,7 @@ const App = () => {
     <AuthContext.Provider value={{ user, setUser }}>
       <Router>
         <ToastContainer />
-        <Navigation />
+        <Navigation user={user} />
         <Suspense fallback={<div>Loading...</div>}>
           {" "}
           <Routes>

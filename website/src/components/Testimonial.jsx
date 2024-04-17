@@ -20,12 +20,12 @@ const Testimonial = () => {
           <h1 className="m-0 flex-1 relative text-inherit tracking-[0.01em] leading-[160%] font-normal font-inherit inline-block min-w-[31.063rem] max-w-full lg:min-w-full mq750:text-[1.813rem] mq750:leading-[2.875rem] mq450:text-[1.375rem] mq450:leading-[2.188rem]">
             “We just wanted to thank you for this fantastic website! We are so
             grateful for being able to advertise our Petite cabin and receive
-            feedback from people from all over the U.S. and even further.”
+            offers from people from all over the country.”
           </h1>
         </div>
         <div className="w-[47.813rem] flex flex-row items-center justify-between gap-[1.25rem] max-w-full text-[1rem] mq450:flex-wrap">
           <div className="relative tracking-[0.01em] leading-[1.625rem]">
-            Adam Morph — CEO Alfatech
+            John Dee — Verified Lister
           </div>
           <div className="flex flex-row items-start justify-start gap-[0.5rem]">
             <img

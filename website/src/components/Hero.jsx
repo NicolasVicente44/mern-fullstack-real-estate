@@ -1,6 +1,5 @@
-
-import React from 'react';
-import heroImage from '../assets/images/hero.png';
+import React from "react";
+import heroImage from "../assets/images/hero.png";
 
 const Hero = () => {
   return (
@@ -15,12 +14,12 @@ const Hero = () => {
       <div className="w-[73rem] flex flex-row items-start justify-between max-w-full gap-[1.25rem] text-[1rem] font-inter lg:flex-wrap">
         <div className="w-[19.063rem] flex flex-col items-start justify-start gap-[2.5rem] min-w-[19.063rem] lg:flex-1 mq450:gap-[1.25rem]">
           <div className="self-stretch relative tracking-[0.01em] leading-[160%]">
-            100% guaranteed build safe, comfortable and transparent with a
-            project management for the best result
+            "Experience the assurance of 100% guaranteed safety, comfort, and
+            transparency with <strong>Proper Pulse</strong>.
           </div>
           <button className="cursor-pointer [border:none] py-[0.5rem] px-[2rem] bg-dodgerblue rounded overflow-hidden flex flex-row items-center justify-start whitespace-nowrap hover:bg-royalblue">
             <div className="relative text-[0.875rem] tracking-[0.01em] leading-[2.5rem] font-semibold font-inter text-white text-center inline-block min-w-[7.688rem]">
-              Free Consultation
+              View Listings Near You
             </div>
           </button>
         </div>

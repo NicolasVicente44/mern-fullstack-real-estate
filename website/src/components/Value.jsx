@@ -17,8 +17,8 @@ const Value = () => {
           />
           <div className="w-[39.563rem] flex flex-col items-center justify-center py-[1.875rem] px-[1.25rem] box-border gap-[2.5rem] min-w-[39.563rem] max-w-full lg:flex-1 mq750:pt-[1.25rem] mq750:pb-[1.25rem] mq750:box-border mq750:min-w-full mq450:gap-[1.25rem]">
             <h1 className="m-0 w-[24.563rem] relative text-[3rem] tracking-[-0.02em] leading-[124%] font-extrabold font-playfair-display inline-block max-w-full mq750:text-[2.375rem] mq750:leading-[3rem] mq450:text-[1.813rem] mq450:leading-[2.25rem]">
-              <p className="m-0">{`Build your needs `}</p>
-              <p className="m-0">with Archmove</p>
+              <p className="m-0">{`Find your place`}</p>
+              <p className="m-0">with Proper Pulse</p>
             </h1>
             <div className="w-[25.438rem] overflow-hidden flex flex-row items-start justify-start gap-[2.375rem] max-w-full mq450:flex-wrap mq450:gap-[1.188rem]">
               <img
@@ -29,11 +29,10 @@ const Value = () => {
               />
               <div className="flex-1 flex flex-col items-start justify-start gap-[0.5rem] min-w-[12.375rem]">
                 <b className="self-stretch relative tracking-[0.01em] leading-[1.625rem]">
-                  100% guaranteed project completion
+                  100% vetted and verified agents
                 </b>
                 <div className="self-stretch relative tracking-[0.01em] leading-[160%] text-gray-200">
-                  Build safe, comfortable and transparent with a project
-                  management application with a joint account.
+                  Build safe, comfortable and transparent relationships with trusted real estate professionals.
                 </div>
               </div>
             </div>
@@ -45,11 +44,10 @@ const Value = () => {
               />
               <div className="flex-1 flex flex-col items-start justify-start gap-[0.5rem] min-w-[12.375rem]">
                 <b className="self-stretch relative tracking-[0.01em] leading-[1.625rem]">
-                  No additional fees
+                  No fees
                 </b>
                 <div className="self-stretch h-[4.875rem] relative tracking-[0.12px] leading-[160%] text-gray-200 inline-block">
-                  There are no hidden costs. The value of the offer you get is the
-                  value you paid.
+                  There are no hidden costs. The value of the information and connections you receive from us is offered for free.
                 </div>
               </div>
             </div>
@@ -61,11 +59,10 @@ const Value = () => {
               />
               <div className="flex-1 flex flex-col items-start justify-start gap-[0.5rem] min-w-[12.375rem]">
                 <b className="self-stretch relative tracking-[0.01em] leading-[1.625rem]">
-                  Get escort from the Team
+                  Get guidance from the Team
                 </b>
                 <div className="self-stretch relative tracking-[0.01em] leading-[160%] text-gray-200">
-                  Monitor reports from the Arsitag team who check directly in the
-                  field.
+                  Monitor properties and manage relationships with agents and other real estate professionals.
                 </div>
               </div>
             </div>
@@ -73,7 +70,7 @@ const Value = () => {
         </div>
         <button className="cursor-pointer [border:none] py-[0.5rem] px-[2rem] bg-dodgerblue rounded overflow-hidden flex flex-row items-center justify-start whitespace-nowrap hover:bg-royalblue">
           <div className="relative text-[0.875rem] tracking-[0.01em] leading-[2.5rem] font-semibold font-inter text-white text-center inline-block min-w-[7.688rem]">
-            Free Consultation
+            Find a new home
           </div>
         </button>
       </section>
