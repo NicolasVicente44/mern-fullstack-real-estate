@@ -20,21 +20,21 @@ const ListingService = (async () => {
 
     show: async (id, cookies) => {
       try {
-        const resource = await apiProvider.get(`/listings/${id}`, {
+        const listing = await apiProvider.get(`/listings/${id}`, {
           headers: {
             Cookie: cookies,
           },
         });
 
-        return resource.data?.resource || {};
+        return listing.data?.listing || {};
       } catch (error) {
         throw error;
       }
     },
 
-    create: async (resource, cookies) => {
+    create: async (listing, cookies) => {
       try {
-        await apiProvider.post("/listings", resource, {
+        await apiProvider.post("/listings", listing, {
           headers: {
             Cookie: cookies,
           },
@@ -44,9 +44,9 @@ const ListingService = (async () => {
       }
     },
 
-    update: async (id, resource, cookies) => {
+    update: async (id, listing, cookies) => {
       try {
-        await apiProvider.put(`/listings/${id}`, resource, {
+        await apiProvider.put(`/listings/${id}`, listing, {
           headers: {
             Cookie: cookies,
           },

@@ -8,7 +8,7 @@ const Hero = () => {
         <p className="m-0">Find Your</p>
         <p className="m-0">
           <span>{`Dream `}</span>
-          <span className="text-dodgerblue">Home</span>
+          <span className="text-black"><u>Home</u></span>
         </p>
       </h1>
       <div className="w-[73rem] flex flex-row items-start justify-between max-w-full gap-[1.25rem] text-[1rem] font-inter lg:flex-wrap">
@@ -17,7 +17,7 @@ const Hero = () => {
             "Experience the assurance of 100% guaranteed safety, comfort, and
             transparency with <strong>Proper Pulse</strong>.
           </div>
-          <button className="cursor-pointer [border:none] py-[0.5rem] px-[2rem] bg-dodgerblue rounded overflow-hidden flex flex-row items-center justify-start whitespace-nowrap hover:bg-royalblue">
+          <button className="cursor-pointer [border:none] py-[0.5rem] px-[2rem] bg-black rounded overflow-hidden flex flex-row items-center justify-start whitespace-nowrap hover:bg-royalblue">
             <div className="relative text-[0.875rem] tracking-[0.01em] leading-[2.5rem] font-semibold font-inter text-white text-center inline-block min-w-[7.688rem]">
               View Listings Near You
             </div>

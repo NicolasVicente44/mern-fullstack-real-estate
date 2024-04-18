@@ -9,8 +9,8 @@ import partner7 from "../assets/images/partner7.png";
 
 const Partner = () => {
   return (
-    <section className="self-stretch box-border overflow-hidden flex flex-col items-start justify-start pt-[4rem] px-[8.5rem] pb-[2.875rem] gap-[2.5rem] max-w-full text-left text-[3rem] text-black font-akaya-kanadaka border-b-[1px] border-solid border-gainsboro mq750:gap-[1.25rem] mq750:pl-[4.25rem] mq750:pr-[4.25rem] mq750:box-border mq450:pl-[1.25rem] mq450:pr-[1.25rem] mq450:box-border">
-      <h1 className="m-0 w-[23.375rem] relative text-inherit tracking-[-0.04em] leading-[3.75rem] font-bold font-inherit inline-block max-w-full mq750:text-[2.375rem] mq750:leading-[3rem] mq450:text-[1.813rem] mq450:leading-[2.25rem]">
+    <section className="max-w-[1400px] mx-auto self-stretch box-border overflow-hidden flex flex-col items-center justify-center pt-[4rem] px-[8.5rem] pb-[2.875rem] gap-[2.5rem] text-left text-[3rem] text-black font-akaya-kanadaka border-b-[1px] border-solid border-gainsboro mq750:gap-[1.25rem] mq750:pl-[4.25rem] mq750:pr-[4.25rem] mq750:box-border mq450:pl-[1.25rem] mq450:pr-[1.25rem] mq450:box-border">
+      <h1 className="m-0 w-[23.375rem] relative text-inherit tracking-[-0.04em] leading-[3.75rem] font-bold font-inherit inline-block max-w-full mq750:text-[2.375rem] mq750:leading-[3rem] mq450:text-[1.813rem] mq450:leading-[2.25rem] text-center">
         Our Partners
       </h1>
       <div className="self-stretch flex flex-row items-end justify-between pt-[2.537rem] px-[1rem] pb-[2.543rem] opacity-[0.4] gap-[1.25rem] mq1050:flex-wrap">

@@ -5,7 +5,7 @@ import testimonial3 from "../assets/images/testimonial3.png";
 
 const Testimonial = () => {
   return (
-    <section className="self-stretch overflow-hidden flex flex-col items-start justify-start py-[5rem] px-[10.312rem] box-border gap-[4rem] max-w-full text-left text-[3rem] text-black font-playfair-display mq750:gap-[2rem] mq750:py-[3.25rem] mq750:px-[5.125rem] mq750:box-border mq450:gap-[1rem] mq450:pl-[1.25rem] mq450:pr-[1.25rem] mq450:box-border">
+    <section className="max-w-[1800px] mx-auto flex flex-col items-center justify-center py-[5rem] px-[10.312rem] gap-[4rem] text-left text-[3rem] text-black font-playfair-display mq750:gap-[2rem] mq750:py-[3.25rem] mq750:px-[5.125rem] mq750:box-border mq450:gap-[1rem] mq450:pl-[1.25rem] mq450:pr-[1.25rem] mq450:box-border">
       <h1 className="m-0 w-[23.375rem] relative text-inherit tracking-[-0.02em] leading-[124%] font-extrabold font-inherit inline-block max-w-full mq750:text-[2.375rem] mq750:leading-[3rem] mq450:text-[1.813rem] mq450:leading-[2.25rem]">
         Sound Too Good To Be True?
       </h1>
@@ -28,16 +28,7 @@ const Testimonial = () => {
             John Dee — Verified Lister
           </div>
           <div className="flex flex-row items-start justify-start gap-[0.5rem]">
-            <img
-              className="h-[3rem] w-[3rem] relative rounded overflow-hidden shrink-0 min-h-[3rem]"
-              alt=""
-              src={testimonial2}
-            />
-            <img
-              className="h-[3rem] w-[3rem] relative rounded overflow-hidden shrink-0 min-h-[3rem]"
-              alt=""
-              src={testimonial3}
-            />
+          
           </div>
         </div>
       </div>

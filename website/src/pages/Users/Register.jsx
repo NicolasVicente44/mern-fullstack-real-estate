@@ -24,8 +24,10 @@ const Register = () => {
     return (
         <div>
             <PageTitle title="Register" />
+            <div className="text-center">
             <h1>Register</h1>
-            <hr />
+
+        </div>
 
             <Form user={user} setUser={setUser} submitForm={submitForm} submitLabel="Register" />
         </div>

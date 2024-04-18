@@ -4,7 +4,7 @@ import CTA1 from "../assets/images/CTA1.png";
 const CTA = () => {
   return (
     <div className="w-full relative bg-white overflow-hidden flex flex-col items-start justify-start leading-[normal] tracking-[normal]">
-      <section className="self-stretch [background:linear-gradient(180deg,_#f9f9f9,_rgba(255,_255,_255,_0))] overflow-hidden flex flex-row items-center justify-start py-[4rem] px-[8.5rem] box-border gap-[3rem] max-w-full text-center text-[4rem] text-black font-playfair-display lg:flex-wrap mq750:gap-[1.5rem] mq750:pl-[4.25rem] mq750:pr-[4.25rem] mq750:box-border mq450:py-[1.688rem] mq450:px-[1.25rem] mq450:box-border mq1050:pt-[2.625rem] mq1050:pb-[2.625rem] mq1050:box-border">
+      <section className="max-w-full mx-auto self-stretch bg-gradient-to-r to-transparent overflow-hidden flex flex-row items-center justify-center py-[4rem] px-[8.5rem] box-border gap-[3rem] text-center text-[4rem] text-black font-playfair-display lg:flex-wrap mq750:gap-[1.5rem] mq750:pl-[4.25rem] mq750:pr-[4.25rem] mq750:box-border mq450:py-[1.688rem] mq450:px-[1.25rem] mq450:box-border mq1050:pt-[2.625rem] mq1050:pb-[2.625rem] mq1050:box-border">
         <img
           className="w-[31.063rem] relative max-h-full object-contain max-w-full lg:flex-1"
           loading="lazy"
@@ -17,10 +17,10 @@ const CTA = () => {
             <p className="m-0">dream property</p>
             <p className="m-0">
               <span>{`with `}</span>
-              <span className="text-dodgerblue">Proper Pulse</span>
+              <span className="text-black">Proper Pulse</span>
             </p>
           </h1>
-          <button className="cursor-pointer [border:none] py-[0.5rem] px-[2rem] bg-dodgerblue rounded overflow-hidden flex flex-row items-center justify-start whitespace-nowrap hover:bg-royalblue">
+          <button className="cursor-pointer border-none py-[0.5rem] px-[2rem] bg-black rounded overflow-hidden flex flex-row items-center justify-start whitespace-nowrap hover:bg-gray">
             <div className="relative text-[0.875rem] tracking-[0.01em] leading-[2.5rem] font-semibold font-inter text-white text-center">
               FREE CONSULTATION
             </div>

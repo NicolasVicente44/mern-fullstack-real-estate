@@ -23,7 +23,7 @@ const Footer = () => {
           </div>
         </div>
         <img
-          className=" h-[2.5rem] w-[6rem] relative overflow-hidden shrink-0"
+          className=" h-[2.2rem] w-[6rem] relative overflow-hidden shrink-0"
           loading="lazy"
           alt=""
           src={logo}
