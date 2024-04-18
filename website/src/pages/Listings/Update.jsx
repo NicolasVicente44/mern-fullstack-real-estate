@@ -60,7 +60,7 @@ const Update = () => {
                             value={type}
                             onChange={(e) => setType(e.target.value)}
                         >
-                            <option value="QUESTION">Question</option>
+                        <option value="QUESTION">Question</option>
                             <option value="ANSWER">Answer</option>
                         </select>
                     </div>

@@ -32,7 +32,7 @@ const Login = () => {
   return (
     <div className="container mx-auto px-5 py-10">
       <div className="w-full max-w-sm mx-auto">
-        <h1 className="font-roboto text-2xl text-center text-black mb-8">
+        <h1 className="font-roboto text-2xl font-bold text-center text-black mb-8">
           Login
         </h1>
         <form onSubmit={submitForm}>

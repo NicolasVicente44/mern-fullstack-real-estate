@@ -90,7 +90,7 @@ const Form = ({ user, setUser, submitForm, submitLabel }) => {
             <div class="flex flex-col items-center justify-center pt-5 pb-6">
               {user.avatar ? (
                 <img
-                  src={URL.createObjectURL(user.avatar)}
+                  src={`http://localhost:1111/${user.avatar}`}
                   alt="avatar"
                   className="w-20 h-20 mb-4 rounded-full"
                 />
@@ -136,8 +136,8 @@ const Form = ({ user, setUser, submitForm, submitLabel }) => {
           type="submit"
           className="bg-black mt-8 text-white font-bold py-4 px-8 mb-6 w-full rounded-lg"
         >
-          {" "}
-          {submitLabel}{" "}
+            
+          {submitLabel}
         </button>
       </form>
     </div>

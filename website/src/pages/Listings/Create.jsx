@@ -45,7 +45,7 @@ const Create = () => {
   };
 
   return (
-    <div>
+    <div className="container mx-auto mt-5">
       <PageTitle title="Create Listing" />
 
       <h1 className="text-2xl font-bold mb-4">Create Listing</h1>

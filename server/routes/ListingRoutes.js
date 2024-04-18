@@ -66,8 +66,6 @@ function handleImageUpload(req, res, next) {
   next();
 }
 
-
-
 router.use(isAuthenticated);
 router.get("/", index);
 router.get("/new", cors(corsOptions), add);
@@ -79,9 +77,10 @@ router.post(
   "/",
   cors(corsOptions),
   upload.array("images"),
+  isAuthenticated,
   handleImageUpload,
   (req, res) => {
-    console.log("files in routes for listing: ", req.files); // Check if the 'image' file is present in req.files
+    // console.log("files in routes for listing: ", req.files); // Check if the 'image' file is present in req.files
 
     const { imageFilename } = req.files;
     create(req, res, { uploadedImages: imageFilename });
@@ -89,14 +88,15 @@ router.post(
 );
 
 // Modify the update route to handle image upload
-router.put(
+router.post(
   "/:id",
   cors(corsOptions),
   upload.array("images"),
+  isAuthenticated,
   handleImageUpload,
   (req, res) => {
     console.log("files in routes for listing: ", req.files); // Check if the 'image' file is present in req.files
-    console.log('update route handler called');
+    console.log("update route handler called");
 
     const { imageFilename } = req;
     update(req, res, { uploadedImages: imageFilename });

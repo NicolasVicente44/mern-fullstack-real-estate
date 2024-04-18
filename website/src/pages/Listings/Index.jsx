@@ -27,8 +27,10 @@ const Listings = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`/api/listings/${id}`);
-      // Refresh the listings after successful deletion
-      setListings(listings.filter((listing) => listing._id !== id)); // Update the state directly
+      // Use the callback function form of setListings to ensure you're working with the latest state
+      setListings((prevListings) =>
+        prevListings.filter((listing) => listing._id !== id)
+      );
     } catch (error) {
       console.error("Error deleting listing:", error);
     }

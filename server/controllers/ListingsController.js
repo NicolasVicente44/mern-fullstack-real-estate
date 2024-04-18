@@ -129,7 +129,10 @@ export const create = async (req, res, next) => {
     res.format({
       "text/html": () => {
         req.session.notifications = [
-          { alertType: "alert-success", message: "Listing was created successfully" },
+          {
+            alertType: "alert-success",
+            message: "Listing was created successfully",
+          },
         ];
         res.redirect("/listings");
       },
@@ -166,13 +169,16 @@ export const update = async (req, res, next) => {
       openHouseDates,
     } = req.body;
 
-    const imageFilename = req.imageFilename; // Get the image filename from the request
-
     const listing = await Listing.findById(req.params.id);
 
     if (!listing) {
       return res.status(404).json({ message: "Listing not found" });
     }
+
+    // Get the filenames from the req.files array
+    const imageFilenames = req.files
+      ? req.files.map((file) => file.filename)
+      : [];
 
     listing.address = address;
     listing.price = price;
@@ -183,18 +189,15 @@ export const update = async (req, res, next) => {
     listing.squareFootage = squareFootage;
     listing.lotSize = lotSize;
     listing.yearBuilt = yearBuilt;
-    listing.images = [imageFilename]; // Assign the image filename to the 'images' field
+    listing.images = imageFilenames; // Assign the array of filenames to the 'images' field
     listing.status = status;
     listing.agent = agent;
     listing.tags = tags;
     listing.priceHistory = priceHistory;
     listing.openHouseDates = openHouseDates;
 
-
-    console.log(listing)
-    console.log(req.body)
+    console.log("Listing after updating images:", listing);
     await listing.save();
-
     res.format({
       "text/html": () => {
         req.session.notifications = [
