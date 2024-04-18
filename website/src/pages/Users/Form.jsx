@@ -82,31 +82,59 @@ const Form = ({ user, setUser, submitForm, submitLabel }) => {
           />
         </div>
 
-        <div className="flex flex-col mb-6">
-          <label htmlFor="avatar" className="text-[#5a7184]">
-            Avatar
+        <div class="flex items-center justify-center w-full">
+          <label
+            for="dropzone-file"
+            class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800  hover:bg-gray-100 dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-gray-400"
+          >
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              {user.avatar ? (
+                <img
+                  src={URL.createObjectURL(user.avatar)}
+                  alt="avatar"
+                  className="w-20 h-20 mb-4 rounded-full"
+                />
+              ) : (
+                <svg
+                  class="w-8 h-8 mb-4 text-black dark:text-black"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 16"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                  />
+                </svg>
+              )}
+              <p class="mb-2 text-sm text-black dark:text-black">
+                {user.avatar ? (
+                  "Change your avatar"
+                ) : (
+                  <span class="font-semibold">Click to upload </span>
+                )}
+                or drag and drop
+              </p>
+              <p class="text-xs text-black dark:text-black">
+                SVG, PNG, JPG or GIF (MAX. 800x400px)
+              </p>
+            </div>
+            <input
+              id="dropzone-file"
+              type="file"
+              onChange={(e) => setUser({ ...user, avatar: e.target.files[0] })}
+              class="hidden"
+            />
           </label>
-          <input
-            type="file"
-            id="avatar"
-            name="avatar"
-            onChange={(e) => setUser({ ...user, avatar: e.target.files[0] })}
-            className="mt-3"
-          />
-          <div className="text-center  pt-14">
-            {user.avatar && (
-              <img
-                src={URL.createObjectURL(user.avatar)}
-                alt="avatar"
-                className=" pb-14 w-36 h-36 p-1 rounded-full ring-8 ring-gray-300 dark:ring-gray-500"
-              />
-            )}
-          </div>
         </div>
 
         <button
           type="submit"
-          className="bg-black text-white font-bold py-4 px-8 mb-6 w-full rounded-lg"
+          className="bg-black mt-8 text-white font-bold py-4 px-8 mb-6 w-full rounded-lg"
         >
           {" "}
           {submitLabel}{" "}

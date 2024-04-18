@@ -36,9 +36,8 @@ const Profile = () => {
         ) : null}
       </div>
 
-      <hr />
-
       <Form
+      
         user={user}
         setUser={setUser}
         submitForm={submitForm}

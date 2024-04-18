@@ -52,7 +52,7 @@ const App = () => {
         Cookies.remove("user");
         setUser(null);
         return;
-      }
+      } 
     };
 
     fetchData();
@@ -63,7 +63,9 @@ const App = () => {
       <Router>
         <ToastContainer />
         <Navigation user={user} />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={<div className="text-2xl text-center">Loading...</div>}
+        >
           {" "}
           <Routes>
             <Route path="/" element={<MainPage />} />
