@@ -32,13 +32,10 @@ const Show = () => {
   return (
     <div className="container mt-5">
       <PageTitle title="Listing" />
-
       <div className="text-center">
         <h1>Listing Details</h1>
       </div>
-
       <hr className="my-5" />
-
       <div>
         <h5>Address: {listing.address}</h5>
         <p>Price: {listing.price}</p>
@@ -51,7 +48,12 @@ const Show = () => {
         <p>Year Built: {listing.yearBuilt}</p>
         <p>Status: {listing.status}</p>
         <p>Tags: {listing.tags.join(", ")}</p>
-        <p>Images: {listing.images}</p>
+        <div>
+          <p>Images:</p>
+          {listing.images.map((image, index) => (
+            <img key={index} src={`http://localhost:1111/${image}`} alt="" />
+          ))}
+        </div>
       </div>
     </div>
   );

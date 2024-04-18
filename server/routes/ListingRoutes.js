@@ -86,8 +86,6 @@ router.post(
     create(req, res, { uploadedImages: imageFilename });
   }
 );
-
-// Modify the update route to handle image upload
 router.post(
   "/:id",
   cors(corsOptions),

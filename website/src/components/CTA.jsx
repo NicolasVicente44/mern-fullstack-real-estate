@@ -1,5 +1,6 @@
 import React from "react";
 import CTA1 from "../assets/images/CTA1.png";
+import { Link } from "react-router-dom";
 
 const CTA = () => {
   return (
@@ -22,7 +23,7 @@ const CTA = () => {
           </h1>
           <button className="cursor-pointer border-none py-[0.5rem] px-[2rem] bg-black rounded overflow-hidden flex flex-row items-center justify-start whitespace-nowrap hover:bg-gray">
             <div className="relative text-[0.875rem] tracking-[0.01em] leading-[2.5rem] font-semibold font-inter text-white text-center">
-              FREE CONSULTATION
+              <Link className="no-underline text-white" to={`/contact`}>FREE CONSULTATION</Link>
             </div>
           </button>
         </div>

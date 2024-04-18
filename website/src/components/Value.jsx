@@ -3,6 +3,7 @@ import value1 from "../assets/images/value1.png";
 import value2 from "../assets/images/value2.png";
 import value3 from "../assets/images/value3.png";
 import value4 from "../assets/images/value4.png";
+import { Link } from "react-router-dom";
 
 const Value = () => {
   return (
@@ -72,7 +73,7 @@ const Value = () => {
       </div>
       <button className="cursor-pointer [border:none] py-[0.5rem] px-[2rem] bg-black rounded overflow-hidden flex flex-row items-center justify-start whitespace-nowrap hover:bg-royalblue">
         <div className="relative text-[0.875rem] tracking-[0.01em] leading-[2.5rem] font-semibold font-inter text-white text-center inline-block min-w-[7.688rem]">
-          Find a new home
+          <Link className="no-underline text-white" to={"/listings"}>Find a new home </Link>
         </div>
       </button>
     </section>

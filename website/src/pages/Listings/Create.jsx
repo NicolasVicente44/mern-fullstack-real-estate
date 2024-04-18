@@ -45,10 +45,12 @@ const Create = () => {
   };
 
   return (
-    <div className="container mx-auto mt-5">
+    <div className=" max-w-[800px] px-4 mx-auto mt-5">
       <PageTitle title="Create Listing" />
 
-      <h1 className="text-2xl font-bold mb-4">Create Listing</h1>
+      <div className="text-center">
+        <h1 className="text-2xl font-bold mb-4">Create Listing</h1>
+      </div>
 
       <hr className="mb-4" />
 
@@ -255,7 +257,7 @@ const Create = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+            className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-blue-600"
           >
             Submit
           </button>

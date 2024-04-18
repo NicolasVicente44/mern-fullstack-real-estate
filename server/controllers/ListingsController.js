@@ -233,7 +233,6 @@ export const remove = async (req, res, next) => {
     }
 
     await Listing.findByIdAndDelete(req.params.id);
-
     res.format({
       "text/html": () => {
         req.session.notifications = [

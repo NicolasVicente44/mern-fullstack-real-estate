@@ -3,11 +3,12 @@ import PageTitle from "../../components/PageTitle";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "tailwindcss/tailwind.css";
+import { useNavigate } from "react-router-dom";
 
 const Listings = () => {
   axios.defaults.withCredentials = true;
-
   const [listings, setListings] = useState([]);
+  const navigate = useNavigate();
 
   // Define fetchData outside useEffect
   const fetchData = async () => {
@@ -31,6 +32,7 @@ const Listings = () => {
       setListings((prevListings) =>
         prevListings.filter((listing) => listing._id !== id)
       );
+      navigate("/listings");
     } catch (error) {
       console.error("Error deleting listing:", error);
     }
@@ -39,19 +41,19 @@ const Listings = () => {
   return (
     <div className="container mt-5">
       <PageTitle title="Listings" />
-
       <div className="text-center">
-        <h1>Listings</h1>
+        <h1 className="text-black no-underline relative tracking-[0.01em] leading-[2.5rem] font-medium inline-block min-w-[2.938rem] whitespace-nowrap">
+          Listings
+        </h1>
       </div>
-
       <hr className="my-5" />
-
-      <div className="text-center mb-4">
-        <Link to="/listings/create" className="standard-link">
-          <h3>Create a new listing</h3>
+      <div className="text-center  mb-4">
+        <Link className="no-underline text-black" to="/listings/create">
+          <h3 className=" hover:bg-gray-500 text-white px-3 py-3 rounded-lg relative tracking-[0.01em] leading-[2.5rem] font-medium inline-block min-w-[2.938rem] whitespace-nowrap bg-black ">
+            Create a new listing
+          </h3>
         </Link>
       </div>
-
       <div className="grid grid-cols-4 mq1050:grid-cols-2 mq450:grid-cols-1 gap-4 hover:">
         {listings.map((listing) => (
           <Link
@@ -60,11 +62,19 @@ const Listings = () => {
             className="standard-link no-underline text-black"
           >
             <div className="border border-gray-300 rounded-md p-4 transition duration-300 ease-in-out transform hover:shadow-lg">
+              {listing.images && listing.images.length > 0 && (
+                <div>
+                  <img
+                    src={`http://localhost:1111/${listing.images[0]}`}
+                    alt="Listing"
+                    className="w-[250px] h-[300px] items-center my-2 mx-auto "
+                  />
+                </div>
+              )}
               <h2 className="text-lg font-bold mb-2">
-                {listing.price ? `$` + listing.price : "No Price"}
+                {listing.price ? `$${listing.price}` : "No Price"}
               </h2>
               <p className="mb-2">Address: {listing.address}</p>
-              <p className="mb-2">Images: {listing.images ? "Yes" : "No"}</p>
               <p className="mb-2">Description: {listing.description}</p>
               <p className="mb-2">Property Type: {listing.propertyType}</p>
               <p className="mb-2">Bedrooms: {listing.bedrooms}</p>
