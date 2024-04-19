@@ -19,12 +19,17 @@ const CTA = () => {
             <p className="m-0">
               <span>{`with `}</span>
               <span className="text-black">Proper Pulse</span>
-            </p>
+          </p>
           </h1>
           <button className="cursor-pointer border-none py-[0.5rem] px-[2rem] bg-black rounded overflow-hidden flex flex-row items-center justify-start whitespace-nowrap hover:bg-gray">
-            <div className="relative text-[0.875rem] tracking-[0.01em] leading-[2.5rem] font-semibold font-inter text-white text-center">
-              <Link className="no-underline text-white" to={`/contact`}>FREE CONSULTATION</Link>
-            </div>
+            <Link
+              to={`/contact`}
+              className="relative no-underline text-[0.875rem] tracking-[0.01em] leading-[2.5rem] font-semibold font-inter text-white text-center"
+            >
+              <Link className="no-underline text-white" to={`/contact`}>
+                FREE CONSULTATION
+              </Link>
+            </Link>
           </button>
         </div>
       </section>

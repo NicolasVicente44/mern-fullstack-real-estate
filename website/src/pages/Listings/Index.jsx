@@ -75,13 +75,10 @@ const Listings = () => {
                 {listing.price ? `$${listing.price}` : "No Price"}
               </h2>
               <p className="mb-2">Address: {listing.address}</p>
-              <p className="mb-2">Description: {listing.description}</p>
               <p className="mb-2">Property Type: {listing.propertyType}</p>
               <p className="mb-2">Bedrooms: {listing.bedrooms}</p>
               <p className="mb-2">Bathrooms: {listing.bathrooms}</p>
               <p className="mb-2">Square Footage: {listing.squareFootage}</p>
-              <p className="mb-2">Lot Size: {listing.lotSize}</p>
-              <p className="mb-2">Year Built: {listing.yearBuilt}</p>
               <p className="mb-2">Status: {listing.status}</p>
               <p className="mb-2">Tags: {listing.tags.join(", ")}</p>
               {/* Add more details here if needed */}
