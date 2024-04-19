@@ -13,7 +13,7 @@ const Value = () => {
           className="w-[33.438rem] relative max-h-full object-cover min-h-[38.125rem] max-w-full lg:flex-1"
           loading="lazy"
           alt=""
-          src={value1}
+          src={value4}
         />
         <div className="w-[39.563rem] flex flex-col items-center justify-center py-[1.875rem] px-[1.25rem] box-border gap-[2.5rem] min-w-[39.563rem] max-w-full lg:flex-1 mq750:pt-[1.25rem] mq750:pb-[1.25rem] mq750:box-border mq750:min-w-full mq450:gap-[1.25rem]">
           <h1 className="m-0 w-[24.563rem] relative text-[3rem] tracking-[-0.02em] leading-[124%] font-extrabold font-playfair-display inline-block max-w-full mq750:text-[2.375rem] mq750:leading-[3rem] mq450:text-[1.813rem] mq450:leading-[2.25rem]">
@@ -25,7 +25,7 @@ const Value = () => {
               className="h-[4rem] w-[4rem] relative overflow-hidden shrink-0"
               loading="lazy"
               alt=""
-              src={value2}
+              src={value1}
             />
             <div className="flex-1 flex flex-col items-start justify-start gap-[0.5rem] min-w-[12.375rem]">
               <b className="self-stretch relative tracking-[0.01em] leading-[1.625rem]">
@@ -41,7 +41,7 @@ const Value = () => {
             <img
               className="h-[4rem] w-[4rem] relative overflow-hidden shrink-0"
               alt=""
-              src={value3}
+              src={value2}
             />
             <div className="flex-1 flex flex-col items-start justify-start gap-[0.5rem] min-w-[12.375rem]">
               <b className="self-stretch relative tracking-[0.01em] leading-[1.625rem]">
@@ -57,7 +57,7 @@ const Value = () => {
             <img
               className="h-[4rem] w-[4rem] relative overflow-hidden shrink-0"
               alt=""
-              src={value4}
+              src={value3}
             />
             <div className="flex-1 flex flex-col items-start justify-start gap-[0.5rem] min-w-[12.375rem]">
               <b className="self-stretch relative tracking-[0.01em] leading-[1.625rem]">

@@ -1,7 +1,5 @@
 import React from "react";
 import testimonial1 from "../assets/images/testimonial1.png";
-import testimonial2 from "../assets/images/testimonial2.png";
-import testimonial3 from "../assets/images/testimonial3.png";
 
 const Testimonial = () => {
   return (
