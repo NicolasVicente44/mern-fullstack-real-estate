@@ -25,7 +25,7 @@ const Register = () => {
         <div>
             <PageTitle title="Register" />
             <div className="text-center">
-            <h1>Register</h1>
+            <h1>Register With Proper Pulse</h1>
 
         </div>
 

@@ -7,6 +7,9 @@ const Contact = () => {
       <PageTitle title="Contact Us" />
 
       <div className="max-w-[800px] my-24 mx-auto md:px-6">
+        <h1 className="font-roboto text-2xl text-center font-bold text-black mb-8">
+         Proper Pulse - Integrated Real Estate
+        </h1>
         <section className="mb-32">
           <div className="flex flex-wrap">
             <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:mb-0 md:w-7/12 md:px-3 lg:px-6">
