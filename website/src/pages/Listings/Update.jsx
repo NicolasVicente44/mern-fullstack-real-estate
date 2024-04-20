@@ -36,6 +36,14 @@ const Update = () => {
     fetchData();
   }, [id]);
 
+  const formatPrice = (price) => {
+    price = price.replace(/,/g, "");
+    if (price.length > 3) {
+      price = price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    return price;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -47,7 +55,7 @@ const Update = () => {
   const handleImagesChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
-      images: e.target.files,
+      images: Array.from(e.target.files),
     }));
   };
 
@@ -60,7 +68,6 @@ const Update = () => {
       console.error("Error updating listing:", error);
     }
   };
-
   return (
     <div className="max-w-[800px] px-4  mx-auto mt-5">
       <PageTitle title="Update Listing" />
@@ -89,9 +96,7 @@ const Update = () => {
           </div>
 
           <div>
-            <label htmlFor="price" className="block mb-1">
-              Price:
-            </label>
+            <label htmlFor="price">Price:</label>
             <input
               type="number"
               id="price"
@@ -212,21 +217,13 @@ const Update = () => {
             <label htmlFor="images" className="block mb-1">
               Images:
             </label>
-            <input
-              type="file"
-              id="images"
-              name="images"
-              onChange={handleImagesChange}
-              multiple
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required={!formData.images || formData.images.length === 0}
-            />
+
             {formData.images && formData.images.length > 0 && (
               <div className="mt-2">
                 {Array.from(formData.images).map((image, index) => (
                   <img
                     key={index}
-                    src={URL.createObjectURL(image)}
+                    src={`http://localhost:1111/${image}`}
                     alt={`Image ${index}`}
                     className="w-32 h-32 object-cover mr-2 mb-2 rounded-md"
                   />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PageTitle from "../../components/PageTitle";
 import axios from "axios";
 
@@ -38,7 +38,7 @@ const Show = () => {
   }
 
   return (
-    <div className="container mt-5">
+    <div className="mx-auto max-w-[800px] my-0 mt-5">
       <PageTitle title="Listing" />
       <div className="text-center">
         <h1>Listing Details</h1>
@@ -77,6 +77,14 @@ const Show = () => {
                 </strong>
               )}
             </p>
+            <div className="text-center">
+              <Link
+                to={`/listings/${listing._id}/update`}
+                className="no-underline hover:bg-gray-500 text-white px-2 py-1 rounded-lg relative tracking-[0.01em] leading-[2.5rem] font-medium inline-block min-w-[2.938rem] whitespace-nowrap bg-black "
+              >
+                Edit Listing
+              </Link>
+            </div>
           </div>
         </div>
       </div>

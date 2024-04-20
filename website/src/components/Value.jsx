@@ -4,8 +4,11 @@ import value2 from "../assets/images/value2.png";
 import value3 from "../assets/images/value3.png";
 import value4 from "../assets/images/value4.png";
 import { Link } from "react-router-dom";
+import { useAuth } from "../App";
 
 const Value = () => {
+  const { user } = useAuth();
+
   return (
     <section className="self-stretch overflow-hidden flex flex-col items-center justify-start py-[5rem] px-[1.25rem] box-border gap-[4rem] max-w-full text-left text-[1rem] text-black font-inter mq750:gap-[2rem] mq450:gap-[1rem] mq450:pt-[2.125rem] mq450:pb-[2.125rem] mq450:box-border mq1050:pt-[3.25rem] mq1050:pb-[3.25rem] mq1050:box-border">
       <div className="w-[73rem] flex flex-row items-start justify-between [row-gap:20px] max-w-full gap-[0rem] lg:flex-wrap">
@@ -73,7 +76,15 @@ const Value = () => {
       </div>
       <button className="cursor-pointer [border:none] py-[0.5rem] px-[2rem] bg-black rounded overflow-hidden flex flex-row items-center justify-start whitespace-nowrap hover:bg-royalblue">
         <div className="relative text-[0.875rem] tracking-[0.01em] leading-[2.5rem] font-semibold font-inter text-white text-center inline-block min-w-[7.688rem]">
-          <Link className="no-underline text-white" to={"/listings"}>Find a new home </Link>
+          {user ? (
+            <Link className="no-underline text-white" to={"/listings"}>
+              View Listings Near You
+            </Link>
+          ) : (
+            <Link className="no-underline text-white" to={"/login"}>
+              View Listings Near You
+            </Link>
+          )}{" "}
         </div>
       </button>
     </section>

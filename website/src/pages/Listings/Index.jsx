@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "tailwindcss/tailwind.css";
 import { useNavigate } from "react-router-dom";
+import bedroomSVG from "../../assets/svgs/bedroom.png";
+import bathroomSVG from "../../assets/svgs/bathtub.png";
 
 const Listings = () => {
   axios.defaults.withCredentials = true;
@@ -72,15 +74,39 @@ const Listings = () => {
                 </div>
               )}
               <h2 className="text-lg font-bold mb-2">
-                {listing.price ? `$${listing.price}` : "No Price"}
+                {listing.price ? `$${listing.price}` : "Not Specified"}
               </h2>
-              <p className="mb-2">Address: {listing.address}</p>
-              <p className="mb-2">Property Type: {listing.propertyType}</p>
-              <p className="mb-2">Bedrooms: {listing.bedrooms}</p>
-              <p className="mb-2">Bathrooms: {listing.bathrooms}</p>
-              <p className="mb-2">Square Footage: {listing.squareFootage}</p>
-              <p className="mb-2">Status: {listing.status}</p>
-              <p className="mb-2">Tags: {listing.tags.join(", ")}</p>
+              <p className="mb-2">
+                <strong>Address: {listing.address || "Not Specified"}</strong>{" "}
+              </p>
+              <p className="mb-2">
+                <img
+                  className="max-w-[30px] mr-8 max-h-[30px]"
+                  src={bedroomSVG}
+                  alt=""
+                />
+                {""}
+                {listing.bedrooms || "Not Specified"}
+              </p>
+              <p className="mb-2">
+                {" "}
+                <img
+                  className="max-w-[30px] mr-8 max-h-[30px]"
+                  src={bathroomSVG}
+                  alt=""
+                />
+                {""} {listing.bathrooms || "Not Specified"}
+              </p>
+              <p className="mb-2">
+                Property Type: {listing.propertyType || "Not Specified"}
+              </p>
+              <p className="mb-2">
+                Square Footage: {listing.squareFootage || "Not Specified"}
+              </p>
+              <p className="mb-2">Status: {listing.status || "Not Specified"}</p>
+              <p className="mb-2">
+                Tags: {listing.tags ? listing.tags.join(", ") : "Not Specified"}
+              </p>
               {/* Add more details here if needed */}
               <div className="flex justify-between">
                 <Link to={`/listings/${listing._id}`} className="standard-link">
