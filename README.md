@@ -31,8 +31,8 @@ Test-Driven Development (TDD) is a crucial practice in Node.js development that 
 
 Moreover, TDD promotes a modular and decoupled code structure, which aligns well with Node.js's design philosophy. Node.js applications often involve multiple modules and dependencies, making it essential to have well-isolated and independently testable components. TDD encourages developers to create functions and modules that are self-contained and easily testable, resulting in code that is easier to maintain and extend. Additionally, the continuous feedback loop of writing tests, implementing code, and refactoring ensures that the application remains stable and adaptable as it evolves. Overall, Test-Driven Development is a vital practice in Node.js development, offering benefits such as improved code quality, faster development cycles, and greater confidence in the reliability of applications.
 
-## Our Application
-Our Node.js application is built to create a simple web API using the Express.js framework. The architecture is structured to follow best practices and maintainability.
+## The Application
+This Node.js application is built to create a simple web API using the Express.js framework. The architecture is structured to follow best practices and maintainability.
 
 **index.js:** This file is the entry point of our application. It starts an Express server that listens on a specified port.
 
